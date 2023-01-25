@@ -1,7 +1,7 @@
 # Intro. to Software Eng. Team #35
 Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jonathan W.<sup>2</sup>
-1. Front end developer
-2. Back end developer
+1. Front-end developer
+2. Back-end developer
 
 ## Wi-Key: An Engaging and Educational Typing Practice App
 
