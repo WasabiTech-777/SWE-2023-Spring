@@ -1,17 +1,15 @@
-package models
+package main
 
 import "gorm.io/gorm"
 
 type User struct {
 	gorm.Model
-	Poop string `json:"poop"`
+	PassWord string `json:"PassWord"`
+	Id       int    `json:"Id"`
+	Articles int    `json:"Articles"`
+	CharHit  int    `json:"CharHit"`
+	CharMiss int    `json:"CharMiss"`
 }
-
-//	PassWord string `json:"PassWord"`
-//	Id       int    `json:"Id"`
-//	Articles int    `json:"Articles"`
-//	CharHit  int    `json:"CharHit"`
-//	CharMiss int    `json:"CharMiss"`
 
 //}
 //    "UserName":"jon",

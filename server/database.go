@@ -1,14 +1,13 @@
-package services
+package main
 
 import (
 	"fmt"
-	"github.com/WasabiTech-777/SWE-2023-Spring/models"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"os"
 )
 
-func InitializeConnection() {
+func InitializeConnection() *gorm.DB {
 	var err error
 	dsn := os.Getenv("DSN")
 	DB, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
@@ -17,28 +16,28 @@ func InitializeConnection() {
 	} else {
 		fmt.Println("Success connecting to database!")
 	}
-	DB.AutoMigrate(&models.User{})
+	return DB
 }
 
-func Migrate(DB *gorm.DB) {
+func Migrate() {
 	var err error
-	err = DB.AutoMigrate(&models.User{})
+	err = DB.AutoMigrate(&User{})
 	if err != nil {
 		panic("Error migrating users")
 	} else {
 		fmt.Println("Success!")
 	}
-	err = DB.AutoMigrate(&models.Friends{})
+	err = DB.AutoMigrate(&Friends{})
 	if err != nil {
 		panic("Error migrating friends list")
 	}
 
-	err = DB.AutoMigrate(&models.Articles{})
+	err = DB.AutoMigrate(&Articles{})
 	if err != nil {
 		panic("Error migrating articles")
 	}
 
-	err = DB.AutoMigrate(&models.TypingSessions{})
+	err = DB.AutoMigrate(&TypingSessions{})
 	if err != nil {
 		panic("Error migrating typing sessions")
 	}

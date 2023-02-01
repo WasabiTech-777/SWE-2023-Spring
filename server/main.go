@@ -1,23 +1,30 @@
 package main
 
 import (
-	"fmt"
 	"github.com/gorilla/mux"
+	"gorm.io/gorm"
+	"log"
 	"net/http"
+	"os"
 )
 
+var DB *gorm.DB
+
 func main() {
-	r := mux.NewRouter()
-	r.HandleFunc("/hello", helloHandler).Methods("GET")
-	r.HandleFunc("/goodbye", goodbyeHandler).Methods("GET")
-	http.Handle("/", r)
-	http.ListenAndServe(":8080", nil)
-}
+	LoadEnv()
+	InitializeConnection()
+	router := mux.NewRouter()
 
-func helloHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "hello!")
-}
+	//Test hello world
+	router.HandleFunc("/", HelloHandler).Methods("GET")
 
-func goodbyeHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "goodbye!")
+	//Routes for User entity
+	//router.HandleFunc("/users", GetUserHandler).Methods("GET")
+	router.HandleFunc("/users", PostUserHandler).Methods("POST")
+
+	//outer.HandleFunc("/users/{uid}", GetUserHandler).Methods("GET")
+	//router.HandleFunc("/users/{uid}", PutUserHandler).Methods("PUT")
+	//router.HandleFunc("/users/{uid}", DeleteUserHandler).Methods("DELETE")
+	log.Fatal(http.ListenAndServe(os.Getenv(":9000"), router))
+
 }

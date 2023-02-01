@@ -1,10 +1,8 @@
-package controllers
+package main
 
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/WasabiTech-777/SWE-2023-Spring/models"
-	"github.com/WasabiTech-777/SWE-2023-Spring/services"
 	"github.com/gorilla/mux"
 	"net/http"
 )
@@ -19,16 +17,16 @@ func GetUserHandler(writer http.ResponseWriter, router *http.Request) {
 	for _, element := range param {
 		fmt.Println(element)
 	}
-	var users models.User
-	services.DB.Find(&users)
-	json.NewEncoder(writer).Encode(users)
+	var user User
+	DB.Find(&user)
+	json.NewEncoder(writer).Encode(user)
 }
 
 func PostUserHandler(writer http.ResponseWriter, router *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
-	var user models.User
+	var user User
 	json.NewDecoder(router.Body).Decode(&user)
-	services.DB.Create(&user)
+	DB.Create(&user)
 	json.NewEncoder(writer).Encode(user)
 }
 

@@ -1,4 +1,4 @@
-package services
+package main
 
 import "github.com/joho/godotenv"
 
