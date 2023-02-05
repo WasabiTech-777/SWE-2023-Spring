@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import Keyboard from "simple-keyboard";
 
 
 @Component({
@@ -8,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FrontEnd';
+
 }
