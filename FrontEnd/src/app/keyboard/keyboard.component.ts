@@ -15,7 +15,9 @@ export class KeyboardComponent {
   ngAfterViewInit() {
     this.keyboard = new Keyboard({
       onChange: input => this.onChange(input),
-      onKeyPress: button => this.onKeyPress(button)
+      onKeyPress: button => this.onKeyPress(button),
+      physicalKeyboardHighlight: true,
+      physicalKeyboardHighlightTextColor: "blue",
     });
   }
 
