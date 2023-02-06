@@ -1,6 +1,5 @@
 FROM golang:1.19.0
-
-WORKDIR /dbTest
-COPY . .
+ENV GOPATH /GO/src/github.com/SWE-2023-Spring/api
+WORKDIR /GO/src/github.com/SWE-2023-Spring/dbTest
+COPY . /GO/src/github.com/SWE-2023-Spring/dbTest
 RUN go mod tidy
-ENTRYPOINT ["C:\Users\marin\go\bin\dlv.exe"]
