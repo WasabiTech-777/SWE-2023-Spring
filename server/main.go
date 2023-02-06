@@ -1,30 +1,30 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
-	"gorm.io/gorm"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/WasabiTech-777/SWE-2023-Spring/initialize"
+	"github.com/WasabiTech-777/SWE-2023-Spring/routes"
+	"github.com/gorilla/mux"
 )
 
-var DB *gorm.DB
-
 func main() {
-	LoadEnv()
-	InitializeConnection()
+	initialize.LoadEnv()
+	initialize.Connect()
+	initialize.Migrate()
 	router := mux.NewRouter()
-
 	//Test hello world
-	router.HandleFunc("/", HelloHandler).Methods("GET")
+	router.HandleFunc("/", routes.HelloHandler).Methods("GET")
 
 	//Routes for User entity
-	//router.HandleFunc("/users", GetUserHandler).Methods("GET")
-	router.HandleFunc("/users", PostUserHandler).Methods("POST")
+	router.HandleFunc("/users", routes.GetUsers).Methods("GET")
+	router.HandleFunc("/users/{uid}", routes.GetUser).Methods("GET")
+	router.HandleFunc("/users", routes.PostUser).Methods("POST")
+	router.HandleFunc("/users/{uid}", routes.PutUser).Methods("PUT")
+	router.HandleFunc("/users/{uid}", routes.DeleteUser).Methods("DELETE")
 
-	//outer.HandleFunc("/users/{uid}", GetUserHandler).Methods("GET")
-	//router.HandleFunc("/users/{uid}", PutUserHandler).Methods("PUT")
-	//router.HandleFunc("/users/{uid}", DeleteUserHandler).Methods("DELETE")
-	log.Fatal(http.ListenAndServe(os.Getenv(":9000"), router))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
 
 }
