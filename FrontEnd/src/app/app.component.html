@@ -2,13 +2,13 @@
   <mat-toolbar color="primary">
     My App
     <span class="fill"></span>
-    <button mat-button onclick="">button 1</button>
+    <button mat-button routerLink="/demo">Demo Page</button>
 
     <span class="fill"></span>
-    <button mat-button>button 2</button>
+    <button mat-button routerLink="">Sign In</button>
   </mat-toolbar>
 </p>
 
 <div>
-  <app-demo-page></app-demo-page>
+  <router-outlet></router-outlet>
 </div>
