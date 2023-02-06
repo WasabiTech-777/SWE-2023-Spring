@@ -1,4 +1,4 @@
-####Sprint 1
+### Sprint 1
 
 User stories
 What issues your team planned to address
