@@ -7,5 +7,6 @@
 </div>
 
 <div style="text-align:center">
-    <app-keyboard></app-keyboard>
+    <textarea (input)="onInputChange($event)" class="input" value={{value}} placeholder="Start Typing"></textarea>
+    <div class="simple-keyboard"></div>
 </div>

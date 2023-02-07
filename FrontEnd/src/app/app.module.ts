@@ -10,8 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from "@angular/material/icon";
 import { AppRoutingModule } from './app-routing.module';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { KeyboardComponent } from './keyboard/keyboard.component';
-///import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -19,7 +17,6 @@ import { KeyboardComponent } from './keyboard/keyboard.component';
     AppComponent,
     DemoPageComponent,
     SignInComponent,
-    KeyboardComponent
   ],
   imports: [
     CommonModule,
