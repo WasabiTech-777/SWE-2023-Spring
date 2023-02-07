@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from "@angular/material/icon";
 import { AppRoutingModule } from './app-routing.module';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { MaterialModule } from './material.module';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
     MatToolbarModule,
     MatIconModule,
     AppRoutingModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
