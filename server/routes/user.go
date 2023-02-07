@@ -8,6 +8,7 @@ import (
 	"github.com/WasabiTech-777/SWE-2023-Spring/initialize"
 	"github.com/WasabiTech-777/SWE-2023-Spring/models"
 	"github.com/gorilla/mux"
+	"golang.org/x/crypto/bcrypt"
 )
 
 func HelloHandler(writer http.ResponseWriter, request *http.Request) {
@@ -35,10 +36,27 @@ func GetUser(writer http.ResponseWriter, request *http.Request) {
 	json.NewEncoder(writer).Encode(user)
 }
 
+func GenerateHashedPassword(user *models.User) {
+	pwCost := 16
+	//original password strings cannot exceed 72 bytes
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Pass), pwCost)
+	if err != nil {
+		fmt.Println("Password is too long! Maximum length is 72 characters.")
+	}
+
+	mismatch := bcrypt.CompareHashAndPassword(hashedPassword, []byte(user.Pass))
+	if mismatch != nil {
+		fmt.Println("Hash failed!")
+	}
+
+	user.Pass = string(hashedPassword)
+}
+
 func PostUser(writer http.ResponseWriter, request *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
 	var user models.User
 	json.NewDecoder(request.Body).Decode(&user)
+	GenerateHashedPassword(&user)
 	post := initialize.DB.Create(&user)
 	err := post.Error
 
