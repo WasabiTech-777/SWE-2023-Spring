@@ -1,17 +1,16 @@
 <p>
   <mat-toolbar color="primary" class = "mat-elevation-z6">
-    My App
+    Wi-Key
     <span class="fill"></span>
-    <button mat-button>button 1</button>
+    <button mat-button
+    routerLink="/demo-page">Demo</button>
 
     <span class="fill"></span>
-    <button mat-button>button 2</button>
+    <button mat-button
+    routerLink="">Log In</button>
   </mat-toolbar>
 </p>
 
 <div>
-  <app-demo-page></app-demo-page>
+  <router-outlet></router-outlet>
 </div>
-
-
-<router-outlet></router-outlet>
