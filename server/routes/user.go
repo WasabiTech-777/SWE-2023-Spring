@@ -22,6 +22,17 @@ func GetUsers(writer http.ResponseWriter, request *http.Request) {
 	json.NewEncoder(writer).Encode(&users)
 }
 
+func AuthenticateUser(user *models.User, writer http.ResponseWriter) {
+	var storedUser models.User
+	result := initialize.DB.Find("this hashed password=$1").First(&user.Pass)
+	result.Scan(&storedUser.Pass)
+	err := bcrypt.CompareHashAndPassword([]byte(user.Pass), []byte(storedUser.Pass))
+	if err != nil {
+		// If the two passwords don't match, return a 401 status
+		writer.WriteHeader(http.StatusUnauthorized)
+	}
+}
+
 func GetUser(writer http.ResponseWriter, request *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(request)
@@ -33,7 +44,11 @@ func GetUser(writer http.ResponseWriter, request *http.Request) {
 		writer.Write([]byte("User does not exist"))
 	}
 
+	json.NewDecoder(request.Body).Decode(&user)
+	AuthenticateUser(&user, writer) //Should this be a function or part of GetUser?
+
 	json.NewEncoder(writer).Encode(user)
+
 }
 
 func GenerateHashedPassword(user *models.User) {
