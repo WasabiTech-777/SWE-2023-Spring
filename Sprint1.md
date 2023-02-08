@@ -26,7 +26,18 @@ As a statistics enthusiast, I want to be able to export my performance data loca
 
 ## What issues your team planned to address
 
+We planned to address the:
+- Adding User Keyboard Input Feature
+- Creating a Login Service
+- Accessing the demo page as a guest
+- Editing Account Information
+
 ## Which ones were successfully completed
+We were successful, in some form, with:
+### Adding User Keyboard Input Feature
+- We implemented a simple-keyboard API
+- Users can now see what keys they are typing on the screen or type using the on-screen keyboard
+### Creating a Login Service
 
 ## Which ones didn't and why?
 
