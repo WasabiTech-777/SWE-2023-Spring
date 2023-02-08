@@ -46,7 +46,7 @@ We were successful, in some form, with:
 - A new user's username and password can be saved for persistent future use
 - UI for user login was created, functionality not yet implemented
 ### Accessing the demo page as a guest
-- button created that leads you to the demo page
+- A button was added to the login page that leads you to the demo page
 ### Editing Account Information
 - After creating an account, users can change details such as their username; these changes are saved to the database for persistent use.
 ### Account Security
