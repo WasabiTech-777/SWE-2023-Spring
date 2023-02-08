@@ -22,14 +22,23 @@ func GetUsers(writer http.ResponseWriter, request *http.Request) {
 	json.NewEncoder(writer).Encode(&users)
 }
 
-func AuthenticateUser(user *models.User, writer http.ResponseWriter) {
+func AuthenticateUser(writer http.ResponseWriter, request *http.Request) {
+	writer.Header().Set("Content-Type", "application/json")
+	var userCredentials models.User
+	json.NewDecoder(request.Body).Decode(&userCredentials)
+
 	var storedUser models.User
-	result := initialize.DB.Find("this hashed password=$1").First(&user.Pass)
-	result.Scan(&storedUser.Pass)
-	err := bcrypt.CompareHashAndPassword([]byte(user.Pass), []byte(storedUser.Pass))
+	initialize.DB.Where("name = ?", userCredentials.Name).First(&storedUser)
+	fmt.Println([]byte(userCredentials.Pass))
+	fmt.Println([]byte(storedUser.Pass))
+	//result := initialize.DB.Find("this hashed password=$1").First(&user.Pass)
+	//result.Scan(&storedUser.Pass)
+	err := bcrypt.CompareHashAndPassword([]byte(storedUser.Pass), []byte(userCredentials.Pass))
 	if err != nil {
 		// If the two passwords don't match, return a 401 status
 		writer.WriteHeader(http.StatusUnauthorized)
+	} else {
+		fmt.Fprintf(writer, "hello! you have been authenticated")
 	}
 }
 
@@ -44,8 +53,8 @@ func GetUser(writer http.ResponseWriter, request *http.Request) {
 		writer.Write([]byte("User does not exist"))
 	}
 
-	json.NewDecoder(request.Body).Decode(&user)
-	AuthenticateUser(&user, writer) //Should this be a function or part of GetUser?
+	//json.NewDecoder(request.Body).Decode(&user)
+	//AuthenticateUser(&user, writer) //Should this be a function or part of GetUser?
 
 	json.NewEncoder(writer).Encode(user)
 
@@ -88,6 +97,7 @@ func PutUser(writer http.ResponseWriter, request *http.Request) {
 	params := mux.Vars(request)
 	var user models.User
 	initialize.DB.First(&user, params["uid"])
+	fmt.Printf(params["uid"])
 	json.NewDecoder(request.Body).Decode(&user)
 	initialize.DB.Save(&user)
 	json.NewEncoder(writer).Encode(user)

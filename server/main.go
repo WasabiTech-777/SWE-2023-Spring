@@ -24,7 +24,7 @@ func main() {
 	router.HandleFunc("/users", routes.PostUser).Methods("POST")
 	router.HandleFunc("/users/{uid}", routes.PutUser).Methods("PUT")
 	router.HandleFunc("/users/{uid}", routes.DeleteUser).Methods("DELETE")
-
+	router.HandleFunc("/login", routes.AuthenticateUser)
 	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
 
 }
