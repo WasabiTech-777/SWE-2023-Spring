@@ -59,3 +59,5 @@ We were successful, in some form, with:
 - There is more information we would like to make available for editing, such as passwords. This was not completed because it was not concieved of until the very end of the Sprint. 
 ### General Observations 
 - We accomplished precisely the issues we set out to accomplish, but working on issues sometimes reveals other standard features that should be implemented even if they do not fit into a user story. 
+## Demo Video Links
+- Front end: https://www.youtube.com/watch?v=MmqSiXthUYE
