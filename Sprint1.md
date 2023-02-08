@@ -46,7 +46,3 @@ We were successful, in some form, with:
 ## Which ones didn't and why?
 ### Editing Account Information
 - Why?
-## Demo Link
-
-FRONT END LINK:
-BACK END LINK:
