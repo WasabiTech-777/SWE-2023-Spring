@@ -43,8 +43,8 @@ We were successful, in some form, with:
 - We implemented a simple-keyboard API
 - Users can now see what keys they are typing on the screen or type using the on-screen keyboard
 ### Creating a Login Service
-- backend: a new user's username and password can be saved for persistent future use
-- frontend: login page and card created
+- Back end: a new user's username and password can be saved for persistent future use
+- Front end: login page and card created
 ### Accessing the demo page as a guest
 - button created that leads you to the demo page
 ### Editing Account Information
