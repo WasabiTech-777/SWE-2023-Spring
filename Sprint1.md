@@ -40,7 +40,7 @@ We planned to address the:
 ## Which ones were successfully completed
 We were successful, in some form, with:
 ### Adding User Keyboard Input Feature
-- We implemented a simple-keyboard API
+- We implemented a simple-keyboard UI
 - Users can now see what keys they are typing on the screen or type using the on-screen keyboard
 ### Creating a Login Service
 - Back end: a new user's username and password can be saved for persistent future use
