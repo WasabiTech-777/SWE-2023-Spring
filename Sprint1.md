@@ -38,7 +38,12 @@ We were successful, in some form, with:
 - We implemented a simple-keyboard API
 - Users can now see what keys they are typing on the screen or type using the on-screen keyboard
 ### Creating a Login Service
+- backend:
+- frontend: login page and card created
+### Accessing the demo page as a guest
+- button created that leads you to the demo page
 
 ## Which ones didn't and why?
-
+### Editing Account Information
+- Why?
 ## Demo Link
