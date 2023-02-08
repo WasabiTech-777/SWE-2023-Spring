@@ -1,6 +1,6 @@
-### Sprint 1
+# Sprint 1
 
-### User stories
+## User stories
 
 As an avid social media user, I want to message other users and compare my progress to theirs so that I can encourage myself.
 
@@ -24,10 +24,10 @@ As a statistics enthusiast, I want to view the average typing speed of all users
 
 As a statistics enthusiast, I want to be able to export my performance data locally so I can further analyze the data and make predictions about my future improvement. 
 
-### What issues your team planned to address
+## What issues your team planned to address
 
-### Which ones were successfully completed
+## Which ones were successfully completed
 
-### Which ones didn't and why?
+## Which ones didn't and why?
 
-### Demo Link
+## Demo Link
