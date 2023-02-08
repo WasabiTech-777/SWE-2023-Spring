@@ -13,3 +13,11 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 
 ### _Solution_
 >A typing website/app that engages users by using articles from simple.wikipedia.com, a version of Wikipedia that uses simple English. This way, users can be engaged by learning about new concepts with short articles while also practicing typing. The application will store user metrics like pages read, friends, typing performance, and interests.
+
+## Documentation
+
+### _Quick Start for the Server_
+> The .env file contains constants for the localhost port for testing (type localhost:PORT# into a browser when program is running to see output). The other constant is the dns string for connecting a database to the server. Plans for a remote database are in the works, but a local database can be created by downloading the Docker Desktop app, the Docker extension, and the Postgres extension.
+
+> main.go intializes the router for the Rest API, initializes the database, and then migrates the database (which creates rows and tables for adding data). 
+> Handlers for the Rest API are located in routes/user.go. 
