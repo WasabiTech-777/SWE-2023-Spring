@@ -99,6 +99,7 @@ func PutUser(writer http.ResponseWriter, request *http.Request) {
 	initialize.DB.First(&user, params["uid"])
 	fmt.Printf(params["uid"])
 	json.NewDecoder(request.Body).Decode(&user)
+	GenerateHashedPassword(&user) //hash new password/rehash old password
 	initialize.DB.Save(&user)
 	json.NewEncoder(writer).Encode(user)
 
