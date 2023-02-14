@@ -29,8 +29,6 @@ func AuthenticateUser(writer http.ResponseWriter, request *http.Request) {
 
 	var storedUser models.User
 	initialize.DB.Where("name = ?", userCredentials.Name).First(&storedUser)
-	fmt.Println([]byte(userCredentials.Pass))
-	fmt.Println([]byte(storedUser.Pass))
 	//result := initialize.DB.Find("this hashed password=$1").First(&user.Pass)
 	//result.Scan(&storedUser.Pass)
 	err := bcrypt.CompareHashAndPassword([]byte(storedUser.Pass), []byte(userCredentials.Pass))
@@ -97,12 +95,9 @@ func PutUser(writer http.ResponseWriter, request *http.Request) {
 	params := mux.Vars(request)
 	var user models.User
 	initialize.DB.First(&user, params["uid"])
-	fmt.Printf(params["uid"])
 	json.NewDecoder(request.Body).Decode(&user)
-	GenerateHashedPassword(&user) //hash new password/rehash old password
 	initialize.DB.Save(&user)
 	json.NewEncoder(writer).Encode(user)
-
 }
 
 func DeleteUser(writer http.ResponseWriter, request *http.Request) {
