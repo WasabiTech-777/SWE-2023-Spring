@@ -3,7 +3,7 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 1. Front-end developer
 2. Back-end developer
 
-## Wi-Key: An Engaging and Educational Typing Practice App
+## ⌨️ Wi-Key ⌨️ An Engaging and Educational Typing Practice App
 
 ### _Problem_
 >The need to make typing practice more engaging and accessible
