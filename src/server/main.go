@@ -1,48 +1,30 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"mymodule/src/server/utils"
 	"net/http"
 	"os"
 
+	"github.com/WasabiTech-777/SWE-2023-Spring/initialize"
+	"github.com/WasabiTech-777/SWE-2023-Spring/routes"
 	"github.com/gorilla/mux"
-	"github.com/rs/cors"
 )
 
 func main() {
-	r := mux.NewRouter()
+	initialize.LoadEnv()
+	initialize.Connect()
+	initialize.Migrate()
+	router := mux.NewRouter()
+	//Test hello world
+	router.HandleFunc("/", routes.HelloHandler).Methods("GET")
 
-	r.HandleFunc("/hello-world", helloWorld)
+	//Routes for User entity
+	router.HandleFunc("/users", routes.GetUsers).Methods("GET")
+	router.HandleFunc("/users/{uid}", routes.GetUser).Methods("GET")
+	router.HandleFunc("/users", routes.PostUser).Methods("POST")
+	router.HandleFunc("/users/{uid}", routes.PutUser).Methods("PUT")
+	router.HandleFunc("/users/{uid}", routes.DeleteUser).Methods("DELETE")
+	router.HandleFunc("/login", routes.AuthenticateUser)
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
 
-	// Solves Cross Origin Access Issue
-	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"http://localhost:4200"},
-	})
-	handler := c.Handler(r)
-
-	srv := &http.Server{
-		Handler: handler,
-		Addr:    ":" + os.Getenv("PORT"),
-	}
-
-	log.Fatal(srv.ListenAndServe())
-}
-
-func helloWorld(w http.ResponseWriter, r *http.Request) {
-	var data = struct {
-		Title string `json:"title"`
-	}{
-		Title: "Golang + Angular Starter Kit",
-	}
-
-	jsonBytes, err := utils.StructToJson(data)
-	if err != nil {
-		fmt.Print(err)
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(jsonBytes)
-	return
 }

@@ -1,29 +1,23 @@
-# FrontEnd
+# Intro. to Software Eng. Team #35
+Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jonathan W.<sup>2</sup>
+1. Front-end developer
+2. Back-end developer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1. Hello!
+## ⌨️ Wi-Key ⌨️ An Engaging and Educational Typing Practice App
 
-## Development server
+### _Problem_
+>The need to make typing practice more engaging and accessible
 
-Run `npm install `
+### _Current services and limitations_
+>There are many websites to help people improve their typing speed and accuracy. keybr.com is a very popular website that tracks user performance over time. However, it is not engaging as the example text has no context. typelit.io solves this issue by having users type from public-domain classic novels, but with these long-form texts, it can be difficult for users to form a habit of improving their typing.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### _Solution_
+>A typing website/app that engages users by using articles from simple.wikipedia.com, a version of Wikipedia that uses simple English. This way, users can be engaged by learning about new concepts with short articles while also practicing typing. The application will store user metrics like pages read, friends, typing performance, and interests.
 
-## Code scaffolding
+## Documentation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### _Quick Start for the Server_
+> The .env file contains constants for the localhost port for testing (type localhost:PORT# into a browser when program is running to see output). The other constant is the dns string for connecting a database to the server. Plans for a remote database are in the works, but a local database can be created by downloading the Docker Desktop app, the Docker extension, and the Postgres extension.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+> main.go intializes the router for the Rest API, initializes the database, and then migrates the database (which creates rows and tables for adding data). 
+> Handlers for the Rest API are located in routes/user.go. 
