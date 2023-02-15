@@ -1,0 +1,9 @@
+<div>
+    <h1> Wi-Key Subject: {{ wiki.name }}</h1>
+    <p style="text-align:center">{{ wiki.text }}</p>
+</div>
+
+<div style="text-align:center">
+    <textarea (input)="onInputChange($event)" class="input" value={{value}} placeholder="Start Typing"></textarea>
+    <div class="simple-keyboard"></div>
+</div>

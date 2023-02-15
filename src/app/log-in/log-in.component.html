@@ -1,0 +1,28 @@
+<mat-card class = 'login-card'>
+    <mat-card-header>
+        <h2>
+            Log In
+        </h2>
+    </mat-card-header>
+    <mat-card-content>
+    <form>
+        <mat-form-field appearance="fill" style="width:30vw">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Enter a username">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" style="width:30vw">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter a password">
+            <button style="border:none; background:none" type="button" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" style="margin:1%">Log In</button>
+    <button mat-raised-button color="primary" style="margin:1%">Register</button>
+    <mat-card-actions align = 'end'>
+        <button mat-raised-button routerLink="/demo-page" color="primary">Continue as Guest</button>
+    </mat-card-actions>
+    </mat-card-content>
+</mat-card>
