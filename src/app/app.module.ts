@@ -10,12 +10,14 @@ import { MaterialModule } from './material.module';
 
 import { DemoPageComponent } from './demo-page/demo-page.component';
 import { LogInComponent } from './log-in/log-in.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DemoPageComponent,
-    LogInComponent
+    LogInComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
