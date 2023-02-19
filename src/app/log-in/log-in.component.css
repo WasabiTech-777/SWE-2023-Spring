@@ -1,0 +1,7 @@
+.login-card {
+    display:flex;
+    margin: 0 auto;
+    vertical-align: middle;
+    max-width: 50%;
+    text-align:center;
+}
