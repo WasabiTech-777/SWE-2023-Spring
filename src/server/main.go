@@ -4,7 +4,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-
 	"github.com/WasabiTech-777/SWE-2023-Spring/initialize"
 	"github.com/WasabiTech-777/SWE-2023-Spring/routes"
 	"github.com/gorilla/mux"
@@ -16,7 +15,7 @@ func main() {
 	initialize.Migrate()
 	router := mux.NewRouter()
 	//Test hello world
-	router.HandleFunc("/", routes.HelloHandler).Methods("GET")
+	router.HandleFunc("/", routes.GetHome).Methods("GET")
 
 	//Routes for User entity
 	router.HandleFunc("/users", routes.GetUsers).Methods("GET")

@@ -1,7 +1,6 @@
 package initialize
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -19,9 +18,9 @@ func Connect() *gorm.DB {
 	if err != nil {
 		log.Fatal(err)
 		panic("Error connecting to the database")
-	} else {
-		fmt.Println("Success connecting to database!")
-	}
+	} //else {
+	//	fmt.Println("Success connecting to database!")
+	//}
 	return DB
 }
 
