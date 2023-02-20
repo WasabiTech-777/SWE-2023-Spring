@@ -11,8 +11,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func HelloHandler(writer http.ResponseWriter, request *http.Request) {
-	fmt.Fprintf(writer, "hello")
+func GetHome(writer http.ResponseWriter, request *http.Request) {
+	fmt.Fprintf(writer, "API Home")
 }
 
 func GetUsers(writer http.ResponseWriter, request *http.Request) {
