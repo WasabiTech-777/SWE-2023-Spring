@@ -2,8 +2,22 @@
     <h1> Wi-Key Subject: {{ wiki.name }}</h1>
     <p style="text-align:center">{{ wiki.text }}</p>
 </div>
-
+<hr>
 <div style="text-align:center">
-    <textarea (input)="onInputChange($event)" class="input" value={{value}} placeholder="Start Typing"></textarea>
+    <h3>Text Input: {{ usrText }}</h3>
+    <h3>Text Length: {{ usrText.length }}</h3>
+
+    <form #userForm="ngForm">
+        <div class="form-group">
+            <label>Input</label>
+            <textarea 
+            (keydown)="onInputChange($event)"
+            class="input" value={{usrInpt}} 
+            name="input"
+            placeholder="Start Typing" 
+            [(ngModel)]="usrText"></textarea>
     <div class="simple-keyboard"></div>
+        </div>
+    </form>
+    
 </div>
