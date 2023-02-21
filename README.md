@@ -17,7 +17,14 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 ## Documentation
 
 ### _Quick Start for the Server_
-> The .env file contains constants for the localhost port for testing (type localhost:PORT# into a browser when program is running to see output). The other constant is the dns string for connecting a database to the server. Plans for a remote database are in the works, but a local database can be created by downloading the Docker Desktop app, the Docker extension, and the Postgres extension.
+> The .env file contains constants for the localhost port for testing (type localhost:PORT# into a browser when program is running to see output). The other constant is the dns string for connecting a database to the server. 
 
 > main.go intializes the router for the Rest API, initializes the database, and then migrates the database (which creates rows and tables for adding data). 
 > Handlers for the Rest API are located in routes/user.go. 
+
+> JSON Formats for all of the objects associated with the database can be found in the "models" directory. 
+
+> **Registering** new users is a POST HTTP request (routes.PostUser); in the database, usernames are labeled "uname" and passwords are labaled "pass".
+
+> Users **logging in** should call (routes.AuthenticateUser).
+
