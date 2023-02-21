@@ -11,7 +11,8 @@ import Keyboard from "simple-keyboard";
 export class DemoPageComponent {
   wiki: WikiPrompt = { 
     name: "Japan",
-    text: "The first people in Japan were the Ainu people and other Jōmon people. They were closer related to Europeans or Mongols. They were later conquered and replaced by the Yayoi people (early Japanese and Ryukyuans). The Yayoi were an ancient ethnic group that migrated to the Japanese archipelago mainly from southeastern China during the Yayoi period (300 BCE–300 CE). Modern Japanese people have primarily Yayoi ancestry at an average of 97%. The indigenous Ryukyuan and Ainu peoples have more Jōmon ancestry on the other hand.",
+    text: "The first people in Japan were the Ainu people and other Jōmon people. "
+    //They were closer related to Europeans or Mongols. They were later conquered and replaced by the Yayoi people (early Japanese and Ryukyuans). The Yayoi were an ancient ethnic group that migrated to the Japanese archipelago mainly from southeastern China during the Yayoi period (300 BCE–300 CE). Modern Japanese people have primarily Yayoi ancestry at an average of 97%. The indigenous Ryukyuan and Ainu peoples have more Jōmon ancestry on the other hand.",
   };
 
   constructor() {}
@@ -19,6 +20,7 @@ export class DemoPageComponent {
   usrText: string = "";
   usrInpt: string = "";
   keyboard!: Keyboard;
+
 
   ngOnInit(): void {
   }
@@ -61,4 +63,19 @@ export class DemoPageComponent {
       layoutName: shiftToggle
     });
   };
+
+  onUserInput(value:string){
+    this.usrText = value
+    if (this.usrText === this.wiki.text) {
+      //this.winner = true
+    }
+  }
+
+  compare(randomLetter:string, enteredLetter:string){
+    if (!enteredLetter) {
+      return 'pending'
+    }
+
+    return randomLetter === enteredLetter ? 'correct' : 'incorrect'
+  }
 }

@@ -1,6 +1,6 @@
 <div>
     <h1> Wi-Key Subject: {{ wiki.name }}</h1>
-    <p style="text-align:center">{{ wiki.text }}</p>
+    <p class="text-align:center"><span [class]="compare(letter, usrText[i])" *ngFor="let letter of wiki.text.split(''); let i = index">{{ letter }}</span></p>
 </div>
 <hr>
 <div style="text-align:center">
@@ -9,10 +9,11 @@
 
     <form #userForm="ngForm">
         <div class="form-group">
-            <label>Input</label>
+            <label></label>
             <textarea 
             (keydown)="onInputChange($event)"
-            class="input" value={{usrInpt}} 
+            class="input" 
+            value={{usrInpt}} 
             name="input"
             placeholder="Start Typing" 
             [(ngModel)]="usrText"></textarea>
