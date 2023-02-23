@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/WasabiTech-777/SWE-2023-Spring/initialize"
-	"github.com/WasabiTech-777/SWE-2023-Spring/models"
+	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/initialize"
+	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/models"
 	"github.com/gorilla/mux"
 	"golang.org/x/crypto/bcrypt"
 )

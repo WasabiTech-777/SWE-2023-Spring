@@ -4,8 +4,9 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"github.com/WasabiTech-777/SWE-2023-Spring/initialize"
-	"github.com/WasabiTech-777/SWE-2023-Spring/routes"
+
+	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/initialize"
+	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/routes"
 	"github.com/gorilla/mux"
 )
 
