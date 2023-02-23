@@ -25,7 +25,7 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 
 > JSON Formats for all of the objects associated with the database can be found in the [models](https://github.com/WasabiTech-777/SWE-2023-Spring/tree/main/src/server/models) directory. 
 
-####Event Handlers
+#### Event Handlers
 
 > A **new user registering** on the website requires a POST HTTP request (routes.PostUser); in the database, **usernames are labeled "uname"** and **passwords are labeled "pass"**.
 
