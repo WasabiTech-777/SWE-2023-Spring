@@ -1,4 +1,4 @@
-module github.com/WasabiTech-777/SWE-2023-Spring
+module models
 
 go 1.19
 
