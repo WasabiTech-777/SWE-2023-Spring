@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/WasabiTech-777/SWE-2023-Spring/models"
+	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/models"
 	"golang.org/x/crypto/bcrypt"
 )
 

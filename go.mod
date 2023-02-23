@@ -1,4 +1,4 @@
-module mymodule
+module github.com/WasabiTech-777/SWE-2023-Spring
 
 go 1.19
 
@@ -22,9 +22,3 @@ require (
 	golang.org/x/crypto v0.6.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
 )
-require "github.com/WasabiTech-777/SWE-2023-Spring/initialize" v0.0.0
-replace "github.com/WasabiTech-777/SWE-2023-Spring/initialize" v0.0.0 => "./src/server/initialize"
-require "github.com/WasabiTech-777/SWE-2023-Spring/routes" v0.0.0
-replace "github.com/WasabiTech-777/SWE-2023-Spring/routes" v0.0.0 => "./src/server/routes"
-require "github.com/WasabiTech-777/SWE-2023-Spring/models" v0.0.0
-replace "github.com/WasabiTech-777/SWE-2023-Spring/models" v0.0.0 => "./src/server/models"

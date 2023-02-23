@@ -1,13 +1,14 @@
 package main
 
 import (
-	"testing"
-	"os"
+	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
-	"io/ioutil"
-	"github.com/WasabiTech-777/SWE-2023-Spring/initialize"
-	"github.com/WasabiTech-777/SWE-2023-Spring/routes"
+	"os"
+	"testing"
+
+	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/initialize"
+	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/routes"
 )
 
 func TestLoadEnv(test *testing.T) {
@@ -16,12 +17,12 @@ func TestLoadEnv(test *testing.T) {
 	port := os.Getenv("PORT")
 	if dsn == "" || port == "" {
 		test.Errorf("FAILED. DSN and PORT not sourced")
-	} else{
+	} else {
 		test.Logf("PASSED. DSN and PORT sourced")
-	}	
+	}
 }
 
-func TestConnect (test *testing.T) {
+func TestConnect(test *testing.T) {
 	initialize.LoadEnv()
 	db := initialize.Connect()
 	ch, _ := db.DB()
@@ -33,7 +34,7 @@ func TestConnect (test *testing.T) {
 	}
 }
 
-func TestMigrate (test *testing.T) {
+func TestMigrate(test *testing.T) {
 	initialize.LoadEnv()
 	db := initialize.Connect()
 	initialize.Migrate()
