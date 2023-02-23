@@ -13,7 +13,7 @@ import (
 
 func TestLoadEnv(test *testing.T) {
 	initialize.LoadEnv()
-	dsn := os.Getenv("DSNonline")
+	dsn := os.Getenv("DSN")
 	port := os.Getenv("PORT")
 	if dsn == "" || port == "" {
 		test.Errorf("FAILED. DSN and PORT not sourced")
