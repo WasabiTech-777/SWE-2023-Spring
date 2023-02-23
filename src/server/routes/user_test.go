@@ -4,23 +4,27 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/WasabiTech-777/SWE-2023-Spring/models"
-	"golang.org/x/crypto/bcrypt"
+	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/models"
 )
 
-//GOLANG documentation for testing: https://go.dev/doc/tutorial/add-a-test
+const HASHCOST int = 16
 
-func TestGenerateHashedPassword(t *testing.T) int {
+func TestGenerateHashedPassword(t *testing.T) {
 	//create user with name/pw for testing
-	const PASS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-	var funcUser, testUser models.User
-	funcUser.Pass = PASS
+	const PASS = "abcdefg0123456789"
+	var testUser models.User
 	testUser.Pass = PASS
-	GenerateHashedPassword(&funcUser)
-	testPass, err := bcrypt.GenerateFromPassword([]byte(testUser.Pass), HASHCOST)
-
-	if strings.Compare(funcUser.Pass, string(testPass)) != 0 || err != nil {
-		return -1
+	GenerateHashedPassword(&testUser)
+	result := HelperTestGenerateHashedPassword(&testUser, PASS)
+	if result != 0 {
+		t.Errorf("GenerateHashedPassword failed")
 	}
-	return 0
+
+}
+
+func HelperTestGenerateHashedPassword(testUser *models.User, password string) int {
+	if strings.Compare(password, string(testUser.Pass)) != 0 {
+		return 0
+	}
+	return -1
 }
