@@ -25,7 +25,12 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 
 > JSON Formats for all of the objects associated with the database can be found in the [models](https://github.com/WasabiTech-777/SWE-2023-Spring/tree/main/src/server/models) directory. 
 
-#### Event Handlers
+### _Quick Start for the Proxy Server_
+> A proxy server configuration is used for front-end-to-back-end communication testing. Configuration options can be found in the proxy.conf.json file. To run the proxy server, use command "ng serve --proxy-config proxy.conf.json". If your machine is not permitted to run scripts, run Windows Powershell as Administrator, run command "Get-ExecutionPolicy", then type "Y" to confirm. Once finished running the proxy server, it is **highly recommended** that you run the command "Set-ExecutionPolicy Restricted" for eliminate security vulnerabilities on your local machine. 
+
+Proxy log levels can be configured in the proxy.conf.json file; is no log level is specified, the default option is "info", but the log level in our proxy file is currently set to "debug". Other log level options are: warn, error, and silent. Please see this [guide](https://angular.io/guide/build) for more information on setting up and running a proxy server in Angular.
+
+### Event Handlers
 
 > A **new user registering** on the website requires a POST HTTP request (routes.PostUser); in the database, **usernames are labeled "uname"** and **passwords are labeled "pass"**.
 
