@@ -1,11 +1,10 @@
 <div>
     <h1> Wi-Key Subject: {{ wiki.name }}</h1>
-    <p class="text-align:center"><span [class]="compare(letter, usrText[i])" *ngFor="let letter of wiki.text.split(''); let i = index">{{ letter }}</span></p>
+    <h2 class="text-align:center"><span [class]="compare(letter, usrText[i], i)" *ngFor="let letter of wiki.text.split(''); let i = index">{{ letter }}</span></h2>
 </div>
 <hr>
 <div style="text-align:center">
-    <h3>Text Input: {{ usrText }}</h3>
-    <h3>Text Length: {{ usrText.length }}</h3>
+    <p>Text Length: {{ usrText.length }} || # of Correct Keystrokes: {{ correct }} || # of Mistakes: {{ errors }}</p>
 
     <form #userForm="ngForm">
         <div class="form-group">
