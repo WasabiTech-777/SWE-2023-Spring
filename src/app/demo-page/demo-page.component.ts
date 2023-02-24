@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { WikiPrompt } from '../wikiPrompt';
 import Keyboard from "simple-keyboard";
+import { CdTimerComponent, CdTimerModule } from 'angular-cd-timer';
 
 @Component({
   selector: 'app-demo-page',
@@ -26,7 +27,7 @@ export class DemoPageComponent {
 
   WPM: number = 0;
   accuracy: number = 0;
-  //timer;
+
 
 
   ngOnInit(): void {
@@ -97,4 +98,9 @@ export class DemoPageComponent {
       return 'incorrect'
     }
   }
+
+  onTimeOver = () => {
+    this.WPM = (this.correct * 5) / 15
+
+  };
 }
