@@ -5,7 +5,8 @@
 <hr>
 <div style="text-align:center">
     <p>Text Length: {{ usrText.length }} || # of Correct Keystrokes: {{ correct }} || # of Mistakes: {{ errors }}</p>
-    <p>Words Per Minute: {{ WPM | number }}</p>
+    <p *ngIf="WPM > 0; else elseBlock">Words Per Minute: {{ WPM | number }}</p>
+    <ng-template #elseBlock></ng-template>
     <cd-timer (onComplete)="onTimeOver()" format="intelli" [countdown]="true" [startTime]="15"></cd-timer>
 
     <form #userForm="ngForm">
@@ -17,7 +18,8 @@
             value={{usrInpt}} 
             name="input"
             placeholder="Start Typing" 
-            [(ngModel)]="usrText"></textarea>
+            [(ngModel)]="usrText"
+            [disabled]="WPM > 0"></textarea>
     <div class="simple-keyboard"></div>
         </div>
     </form>

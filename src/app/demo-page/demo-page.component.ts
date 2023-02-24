@@ -101,6 +101,10 @@ export class DemoPageComponent {
 
   onTimeOver = () => {
     this.WPM = (this.correct * 5) / 15
+    
+    //Close form
+
+    //
 
   };
 }
