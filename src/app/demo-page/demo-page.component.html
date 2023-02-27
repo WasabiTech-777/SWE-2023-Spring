@@ -1,9 +1,27 @@
 <div>
     <h1> Wi-Key Subject: {{ wiki.name }}</h1>
-    <p style="text-align:center">{{ wiki.text }}</p>
+    <h2 class="text-align:center"><span [class]="compare(letter, usrText[i], i)" *ngFor="let letter of wiki.text.split(''); let i = index">{{ letter }}</span></h2>
 </div>
-
+<hr>
 <div style="text-align:center">
-    <textarea (input)="onInputChange($event)" class="input" value={{value}} placeholder="Start Typing"></textarea>
+    <p>Text Length: {{ usrText.length }} || # of Correct Keystrokes: {{ correct }} || # of Mistakes: {{ errors }}</p>
+    <p *ngIf="WPM > 0; else elseBlock">Words Per Minute: {{ WPM | number }}</p>
+    <ng-template #elseBlock></ng-template>
+    <cd-timer (onComplete)="onTimeOver()" format="intelli" [countdown]="true" [startTime]="15"></cd-timer>
+
+    <form #userForm="ngForm">
+        <div class="form-group">
+            <label></label>
+            <textarea 
+            (keydown)="onInputChange($event)"
+            class="input" 
+            value={{usrInpt}} 
+            name="input"
+            placeholder="Start Typing" 
+            [(ngModel)]="usrText"
+            [disabled]="WPM > 0"></textarea>
     <div class="simple-keyboard"></div>
+        </div>
+    </form>
+    
 </div>
