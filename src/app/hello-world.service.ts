@@ -8,7 +8,7 @@ export class HelloWorldService {
   constructor(private http: HttpClient) { }
 
   getTitle() {
-    return this.http.get(`${environment.serverUrl}/hello-world`);
+    return this.http.get(`${environment.serverUrl}/users`);
   }
 
 }

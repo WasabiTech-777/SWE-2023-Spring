@@ -12,7 +12,11 @@ import { MaterialModule } from './material.module';
 import { DemoPageComponent } from './demo-page/demo-page.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { RegistrationComponent } from './registration/registration.component';
+
 import { CdTimerModule } from 'angular-cd-timer';
+
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,9 @@ import { CdTimerModule } from 'angular-cd-timer';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    CdTimerModule 
+    CdTimerModule, 
+    ReactiveFormsModule
+
   ],
   providers: [HelloWorldService],
   bootstrap: [AppComponent]
