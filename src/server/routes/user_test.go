@@ -17,7 +17,7 @@ func TestGenerateHashedPassword(t *testing.T) int {
 	funcUser.Pass = PASS
 	testUser.Pass = PASS
 	GenerateHashedPassword(&funcUser)
-	testPass, err := bcrypt.GenerateFromPassword([]byte(testUser.Pass), HASHCOST)
+	testPass, err := bcrypt.GenerateFromPassword([]byte(testUser.Pass), bcrypt.DefaultCost)
 
 	if strings.Compare(funcUser.Pass, string(testPass)) != 0 || err != nil {
 		return -1
