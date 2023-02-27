@@ -1,20 +1,26 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
 
 	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/initialize"
-	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/routes"
+	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/src/server/routes"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
 func main() {
+	fmt.Println("hello")
 	initialize.LoadEnv()
 	initialize.Connect()
 	initialize.Migrate()
 	router := mux.NewRouter()
+	headers := handlers.AllowedHeaders([]string{"Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Authentication, content-type"})
+	methods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"})
+	origins := handlers.AllowedOrigins([]string{"*"})
 	//Test hello world
 	router.HandleFunc("/", routes.GetHome).Methods("GET")
 
@@ -25,6 +31,6 @@ func main() {
 	router.HandleFunc("/users/{uid}", routes.PutUser).Methods("PUT")
 	router.HandleFunc("/users/{uid}", routes.DeleteUser).Methods("DELETE")
 	router.HandleFunc("/login", routes.AuthenticateUser)
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), handlers.CORS(headers, methods, origins)(router)))
 
 }
