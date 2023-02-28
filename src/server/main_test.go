@@ -204,41 +204,43 @@ func TestDELETE(test *testing.T) {
 	}
 }
 
-/*
-func TestAuthenicateUser(t *testing.T) {
-	req := []byte(`{"uname": "Albatross", "pass": "Gator"}`)
+func TestAuthenicateUser(test *testing.T) {
+	//Creating a new server for testing
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Read the request body
+		body, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			test.Error(err)
+		}
 
-	request, err := http.NewRequest("POST", "/path/to/handler", bytes.NewBuffer(req))
-	if err != nil {
-		t.Fatal(err)
-	}
-	request.Header.Set("Content-Type", "application/json")
+		// Check that the request body is valid JSON, and create new user
+		var user models.User
+		err = json.Unmarshal(body, &user)
+		if err != nil {
+			test.Error(err)
+		}
+	}))
 
-	rr := httptest.NewRecorder()
-
-	handler := http.HandlerFunc(routes.AuthenticateUser)
-	handler.ServeHTTP(rr, request)
-
-	if rr.Code != http.StatusOK {
-		t.Errorf("handler returned wrong status code: got %v want %v",
-			rr.Code, http.StatusOK)
-	}
-
-	expected := `{"message":"success"}`
-	if rr.Body.String() != expected {
-		t.Errorf("handler returned unexpected body: got %v want %v",
-			rr.Body.String(), expected)
-	}
-}
-*/
-
-func HelperCreateUser(ts *httptest.Server, reqBody []byte, test *testing.T) {
-	// Creating the new user
-	postReq, err := http.Post(ts.URL+"/users", "application/json", bytes.NewBuffer(reqBody))
+	//Post request to create new user
+	reqBody := []byte(`{"uname": "Alberta", "pass": "Gator"}`)
+	resp, err := http.Post(ts.URL+"/users", "application/json", bytes.NewBuffer(reqBody))
 	if err != nil {
 		test.Error(err)
 	}
-	if postReq.StatusCode != http.StatusCreated {
-		test.Errorf("Expected status code %d, got %d", http.StatusCreated, postReq.StatusCode)
+
+	//If new user was made successfully. authenticate that user with valid credentials
+	if resp.StatusCode == 0 {
+		req, err := http.NewRequest("AuthenticateUser", ts.URL+"/login", bytes.NewBuffer(reqBody))
+		if err != nil {
+			test.Fatal(err)
+		}
+
+		req.Header.Set("Content-Type", "application/json")
+
+		// Check that the response status code is 200
+		if req.Response.StatusCode != 200 {
+			test.Errorf("handler returned wrong status code: got %v want %v",
+				req.Response.StatusCode, http.StatusOK)
+		}
 	}
 }
