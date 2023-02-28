@@ -39,7 +39,7 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 
 > Getting all users requires a GET request to "/users".
 
-> Header Access Control is located in [main.go]https://github.com/WasabiTech-777/SWE-2023-Spring/src/server/main.go.
+> Header Access Control is located in [main.go]https://github.com/WasabiTech-777/SWE-2023-Spring/blob/main/src/server/main.go.
 
 ### _Quick Start for Running the Project End-to-End_
 
