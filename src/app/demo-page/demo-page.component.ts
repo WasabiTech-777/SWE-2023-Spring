@@ -91,16 +91,23 @@ export class DemoPageComponent {
     }
     else if (randomLetter === enteredLetter) {
       this.correct += 1
+      if (pos == this.wiki.text.length - 1)
+        this.onTimeOver()
       return 'correct'
     }
     else{
       this.errors += 1
+      if (pos == this.wiki.text.length - 1)
+        this.onTimeOver()
       return 'incorrect'
     }
   }
 
   onTimeOver = () => {
-    this.WPM = (this.correct * 5) / 15
+    if (this.correct != 0)
+      this.WPM = (this.correct * 5) / 15
+    else
+      this.WPM = -1
     
     //Close form
 
