@@ -9,7 +9,7 @@
 
 ## _Back-End Unit Tests_
 
-## Documentation
+## _Documentation_
 
 ### _Quick Start for the Database_
 > The .env file contains constants for the localhost port for testing (type localhost:PORT# into a browser when program is running to see output). The other constant is the dns string for connecting a database to the server. 
