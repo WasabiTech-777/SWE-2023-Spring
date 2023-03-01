@@ -18,7 +18,7 @@ func main() {
 	initialize.Connect()
 	initialize.Migrate()
 	router := mux.NewRouter()
-	headers := handlers.AllowedHeaders([]string{"Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Authentication, content-type"})
+	headers := handlers.AllowedHeaders([]string{"Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Authentication", "content-type", os.Getenv("angular_domain")})
 	methods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"})
 	origins := handlers.AllowedOrigins([]string{"*"})
 	//Test hello world
@@ -27,7 +27,7 @@ func main() {
 	//Routes for User entity
 	router.HandleFunc("/users", routes.GetUsers).Methods("GET")
 	router.HandleFunc("/users/{uid}", routes.GetUser).Methods("GET")
-	router.HandleFunc("/users", routes.PostUser).Methods("POST")
+	router.HandleFunc("/users", routes.PostUser).Methods("OPTIONS", "POST")
 	router.HandleFunc("/users/{uid}", routes.PutUser).Methods("PUT")
 	router.HandleFunc("/users/{uid}", routes.DeleteUser).Methods("DELETE")
 	router.HandleFunc("/login", routes.AuthenticateUser)
