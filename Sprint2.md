@@ -1,4 +1,7 @@
 ## _Progress in Sprint 2_
+* We implemented color-changing font based on accuracy (on the "Demo" page, entering a correct character turns that corresponding character green, while entering an incorrect character turns that character red).
+* We added CORS permissions added for end-to-end connection that result in a successful GET request, and a POST request to register a new user from the "Register" page.
+* We adjusted the database model so that IDs are a primary key, meaning no 2 users can have the same ID.
 ### What issues the team planned to address + related user stories
 
 ### Which ones were successfully completed
@@ -8,7 +11,18 @@
 ## _Cypress Test and Front-End Unit Tests_
 
 ## _Back-End Unit Tests_
+#### Tests in [main_test.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/main/src/server/main_test.go)
+* **TestLoadEnv**
+* **TestConnect**
+* **TestMigrate**
+* **TestGET**
+* **TestPOST**
+* **TestPUT**
+* **TestDELETE**
+* **TestAuthenticateUser**
 
+#### Test in [user_test.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/main/src/server/models/user_test.go)
+* **TestGenerateHashedPassword with a Helper Function**
 ## _Documentation_
 
 ### _Quick Start for the Database_
