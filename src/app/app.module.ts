@@ -17,6 +17,7 @@ import { CdTimerModule } from 'angular-cd-timer';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AccountService } from './account.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorService,
     multi: true
-  }
+  }, AccountService
   ],
   bootstrap: [AppComponent]
 })
