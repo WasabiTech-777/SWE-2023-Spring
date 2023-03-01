@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { CdTimerComponent, CdTimerModule } from 'angular-cd-timer';
+
 import { DemoPageComponent } from './demo-page.component';
 
 describe('DemoPageComponent', () => {
@@ -11,7 +13,8 @@ describe('DemoPageComponent', () => {
     // config testing module
     // module -- import components, providers, routing, ect 
     await TestBed.configureTestingModule({
-      declarations: [ DemoPageComponent, CdTimerComponent ]
+      declarations: [ DemoPageComponent ],
+      imports: [CdTimerModule, FormsModule]
     })
     .compileComponents();
 

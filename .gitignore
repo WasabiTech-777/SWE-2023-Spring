@@ -35,11 +35,13 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+server.exe
 
 # System files
 .DS_Store
 Thumbs.db
 yarn.lock
+server.exe
 cypress/e2e/1-getting-started/todo.cy.js
 cypress/e2e/2-advanced-examples/actions.cy.js
 cypress/e2e/2-advanced-examples/aliasing.cy.js
