@@ -4,9 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelloWorldService } from './hello-world.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { InterceptorService } from './interceptor.service';
 
 import { DemoPageComponent } from './demo-page/demo-page.component';
 import { LogInComponent } from './log-in/log-in.component';
@@ -16,6 +17,7 @@ import { CdTimerModule } from 'angular-cd-timer';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AccountService } from './account.service';
 
 @NgModule({
   declarations: [
@@ -32,10 +34,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     FormsModule,
     CdTimerModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
 
   ],
-  providers: [HelloWorldService],
+  providers: [HelloWorldService,     
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true
+  }, AccountService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
