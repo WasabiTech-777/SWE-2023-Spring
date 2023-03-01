@@ -1,4 +1,9 @@
 ## _Progress in Sprint 2_
+### What issues the team planned to address + related user stories
+
+### Which ones were successfully completed
+
+### Which ones didn't and why?
 
 ## _Cypress Test and Front-End Unit Tests_
 
