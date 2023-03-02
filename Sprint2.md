@@ -10,7 +10,7 @@
 * We adjusted the database model so that IDs are a primary key, meaning no 2 users can have the same ID.
 ### Which ones didn't and why?
 * There were plans to create a profile page but progress was halted due to some difficulties integrating the front end and back end. 
-* The login functionality is half-complete. The front end and back end functions have been implemented, but there is no visible result yet as the HTTP has not been handled yet.
+* The login functionality is half-complete. The front end and back end functions have been implemented, but there is no visible result yet as the HTTP response has not been handled yet.
 ## _Cypress Test and Front-End Unit Tests_
 #### Cypress test in [register.spec.cy.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/d28ae8915ec5ed7c40697cf1399cac0636e6f18d/cypress/e2e/register.spec.cy.ts)
 * **Visits the home page (currently the login page), then navigates to the register page and fills in the username and password fields, and finally clicks the sign up button to create a new account. The HTTP requests are checked for 200 OK responses.**
