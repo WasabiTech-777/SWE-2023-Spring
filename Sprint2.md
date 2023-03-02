@@ -1,5 +1,5 @@
 ## _Progress in Sprint 2_
-### [Sprint 2 Demo Video](https://youtu.be/PX8B1Ce_P0U)
+### [Sprint 2 Demo Video](https://youtu.be/PX8B1Ce_P0U) [Alternative Sprint 2 Demo Video Link](https://clipchamp.com/watch/mU8L6z12Q7Z)
 ### What issues the team planned to address + related user stories
 * Add functionality in the demo page to track progress, accuracy, and speed of the user.
   * As a career typist, I want to log on to an engaging web app for typing so that I can maximize my typing speed and track my improvement over time.
