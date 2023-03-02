@@ -9,6 +9,8 @@
 * We have accounted for CORS permissions for an end-to-end connection that results in a successful GET request, and a POST request to register a new user from the "Register" page.
 * We adjusted the database model so that IDs are a primary key, meaning no 2 users can have the same ID.
 ### Which ones didn't and why?
+* There were plans to create a profile page but progress was halted due to some difficulties integrating the front end and back end. 
+* The login functionality is half-complete. The front end and back end functions have been implemented, but there is no visible result yet as the HTTP has not been handled yet.
 ## _Cypress Test and Front-End Unit Tests_
 #### Tests in [app.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/app.component.spec.ts)
 * **Test for helloWorld (getUsers)**
