@@ -1,11 +1,13 @@
 ## _Progress in Sprint 2_
-* We implemented color-changing font based on accuracy (on the "Demo" page, entering a correct character turns that corresponding character green, while entering an incorrect character turns that character red).
-* We added CORS permissions for an end-to-end connection that results in a successful GET request, and a POST request to register a new user from the "Register" page.
-* We adjusted the database model so that IDs are a primary key, meaning no 2 users can have the same ID.
 ### What issues the team planned to address + related user stories
-
+* Add functionality in the demo page to track progress, accuracy, and speed of the user.
+  * As a career typist, I want to log on to an engaging web app for typing so that I can maximize my typing speed and track my improvement over time.
+* Integrate front end with the back end, adding account functionality to the web app.
+  * As a typical user, I want my personal account information to be secure so that I am not vulnerable to a data breach affecting this service.
 ### Which ones were successfully completed
-
+* We implemented color-changing font based on accuracy (on the "Demo" page, entering a correct character turns that corresponding character green, while entering an incorrect character turns that character red). Color feedback allows for a more engaging product.
+* We have accounted for CORS permissions for an end-to-end connection that results in a successful GET request, and a POST request to register a new user from the "Register" page.
+* We adjusted the database model so that IDs are a primary key, meaning no 2 users can have the same ID.
 ### Which ones didn't and why?
 
 ## _Cypress Test and Front-End Unit Tests_
