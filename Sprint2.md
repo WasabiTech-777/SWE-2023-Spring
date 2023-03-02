@@ -1,10 +1,29 @@
 ## _Progress in Sprint 2_
+* We implemented color-changing font based on accuracy (on the "Demo" page, entering a correct character turns that corresponding character green, while entering an incorrect character turns that character red).
+* We added CORS permissions for an end-to-end connection that results in a successful GET request, and a POST request to register a new user from the "Register" page.
+* We adjusted the database model so that IDs are a primary key, meaning no 2 users can have the same ID.
+### What issues the team planned to address + related user stories
+
+### Which ones were successfully completed
+
+### Which ones didn't and why?
 
 ## _Cypress Test and Front-End Unit Tests_
 
 ## _Back-End Unit Tests_
+#### Tests in [main_test.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/main/src/server/main_test.go)
+* **TestLoadEnv**
+* **TestConnect**
+* **TestMigrate**
+* **TestGET**
+* **TestPOST**
+* **TestPUT**
+* **TestDELETE**
+* **TestAuthenticateUser**
 
-## Documentation
+#### Test in [user_test.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/main/src/server/routes/user_test.go)
+* **TestGenerateHashedPassword with a Helper Function**
+## _Documentation_
 
 ### _Quick Start for the Database_
 > The .env file contains constants for the localhost port for testing (type localhost:PORT# into a browser when program is running to see output). The other constant is the dns string for connecting a database to the server. 
@@ -37,8 +56,20 @@
 
 > **Cypress Testing**: To run cypress tests, the server must already be running! The command for running cypress is **"npm run cypress:open"**.
 
-### _Quick Start for Proxy Testing_
+### _Troubleshooting_
+> If you are getting unexplained CORS errors, or any errors relating to ports already in use, use these commands to kill the process so you can restart the server:
+> * On Windows: 
+>   * **netstat -ano | findstr : port number**      //to get PID of the process running on the in-use-port
+>   * **taskkill /PID typeyourPIDhere /F**
+> 
+> * On Mac:
+>   * **sudo lsof -i :<port_number>**          //to get PID of the process running on the in-use-port
+>   * **sudo kill <PID>**
+>   * **sudo kill -9 <PID>**                   //if previous command did not successfully terminate the process, this will forcefully terminate the process
+
+
+#### _Proxy Testing_
 > NOTE: This has been deprecated, no proxy server is necessary for testing/demoing. The information about getting permission to run scripts may still be useful.
 > A proxy server configuration is used for front-end-to-back-end communication testing. Configuration options can be found in the proxy.conf.json file. To run the proxy server, use command "ng serve --proxy-config proxy.conf.json". If your machine is not permitted to run scripts, run Windows Powershell as Administrator, run command "Get-ExecutionPolicy", then type "Y" to confirm. Once finished running the proxy server, it is **highly recommended** that you run the command "Set-ExecutionPolicy Restricted" for eliminate security vulnerabilities on your local machine. 
 
-Proxy log levels can be configured in the proxy.conf.json file; is no log level is specified, the default option is "info", but the log level in our proxy file is currently set to "debug". Other log level options are: warn, error, and silent. Please see this [guide](https://angular.io/guide/build) for more information on setting up and running a proxy server in Angular.
+> Proxy log levels can be configured in the proxy.conf.json file; is no log level is specified, the default option is "info", but the log level in our proxy file is currently set to "debug". Other log level options are: warn, error, and silent. Please see this [guide](https://angular.io/guide/build) for more information on setting up and running a proxy server in Angular.

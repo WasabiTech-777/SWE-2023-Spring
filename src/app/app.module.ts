@@ -15,7 +15,6 @@ import { RegistrationComponent } from './registration/registration.component';
 
 import { CdTimerModule } from 'angular-cd-timer';
 
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountService } from './account.service';
 
