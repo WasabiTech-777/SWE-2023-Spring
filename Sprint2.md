@@ -14,10 +14,17 @@
 ## _Cypress Test and Front-End Unit Tests_
 #### Cypress test in [register.spec.cy.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/d28ae8915ec5ed7c40697cf1399cac0636e6f18d/cypress/e2e/register.spec.cy.ts)
 * **Visits the home page (currently the login page), then navigates to the register page and fills in the username and password fields, and finally clicks the sign up button to create a new account. The HTTP requests are checked for 200 OK responses.**
+#### Cypress test in [demoPage.spec.cy.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/d28ae8915ec5ed7c40697cf1399cac0636e6f18d/cypress/e2e/demoPage.spec.cy.ts)
+* **Visits the home page (currently the login page), then navigates to the demo page and fills the text area and the resulting WPM, text length, # of correct keystrokes, and # of mistakes is correct. This is repeated 2 more times with different text inputs**
 #### Tests in [app.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/app.component.spec.ts)
 * **Test for helloWorld (getUsers)**
 #### Tests in [registration.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/registration/registration.component.spec.ts)
-* **Test for createAccount (postUser)**
+* **Test for helloWorld (getUsers)**
+#### Tests in [demo-page.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/demo-page/demo-page.component.spec.ts)
+* **Test for DemoPage's wiki.name variable**
+* **Test for onTimeStop() **
+* **Test for compare(char1, char2, strIndex) **
+
 ## _Back-End Unit Tests_
 #### Tests in [main_test.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/main/src/server/main_test.go)
 * **TestLoadEnv**
