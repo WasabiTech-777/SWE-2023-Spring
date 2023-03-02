@@ -32,5 +32,6 @@ export class AccountService {
     var valInfo = this.http.post(`${environment.serverUrl}/users`, userInfo);
     console.log(userInfo);
     valInfo.subscribe();
+    return valInfo;
   }
 }

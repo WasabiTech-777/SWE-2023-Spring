@@ -1,14 +1,30 @@
 ## _Progress in Sprint 2_
-* We implemented color-changing font based on accuracy (on the "Demo" page, entering a correct character turns that corresponding character green, while entering an incorrect character turns that character red).
-* We added CORS permissions for an end-to-end connection that results in a successful GET request, and a POST request to register a new user from the "Register" page.
-* We adjusted the database model so that IDs are a primary key, meaning no 2 users can have the same ID.
+### [Sprint 2 Demo Video](https://youtu.be/PX8B1Ce_P0U) | [Alternative Sprint 2 Demo Video Link](https://clipchamp.com/watch/mU8L6z12Q7Z)
 ### What issues the team planned to address + related user stories
-
+* Add functionality in the demo page to track progress, accuracy, and speed of the user.
+  * As a career typist, I want to log on to an engaging web app for typing so that I can maximize my typing speed and track my improvement over time.
+* Integrate front end with the back end, adding account functionality to the web app.
+  * As a typical user, I want my personal account information to be secure so that I am not vulnerable to a data breach affecting this service.
 ### Which ones were successfully completed
-
+* We implemented color-changing font based on accuracy (on the "Demo" page, entering a correct character turns that corresponding character green, while entering an incorrect character turns that character red). Color feedback allows for a more engaging product.
+* We have accounted for CORS permissions for an end-to-end connection that results in a successful GET request, and a POST request to register a new user from the "Register" page.
+* We adjusted the database model so that IDs are a primary key, meaning no 2 users can have the same ID.
 ### Which ones didn't and why?
-
+* There were plans to create a profile page but progress was halted due to some difficulties integrating the front end and back end. 
+* The login functionality is half-complete. The front end and back end functions have been implemented, but there is no visible result yet as the HTTP response has not been handled yet.
 ## _Cypress Test and Front-End Unit Tests_
+#### Cypress test in [register.spec.cy.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/d28ae8915ec5ed7c40697cf1399cac0636e6f18d/cypress/e2e/register.spec.cy.ts)
+* **Visits the home page (currently the login page), then navigates to the register page and fills in the username and password fields, and finally clicks the sign up button to create a new account. The HTTP requests are checked for 200 OK responses.**
+#### Cypress test in [demoPage.spec.cy.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/d28ae8915ec5ed7c40697cf1399cac0636e6f18d/cypress/e2e/demoPage.spec.cy.ts)
+* **Visits the home page (currently the login page), then navigates to the demo page and fills the text area and the resulting WPM, text length, # of correct keystrokes, and # of mistakes is correct. This is repeated 2 more times with different text inputs**
+#### Tests in [app.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/app.component.spec.ts)
+* **Test for helloWorld (getUsers)**
+#### Tests in [registration.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/registration/registration.component.spec.ts)
+* **Test for helloWorld (getUsers)**
+#### Tests in [demo-page.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/demo-page/demo-page.component.spec.ts)
+* **Test for DemoPage's wiki.name variable**
+* **Test for onTimeStop() **
+* **Test for compare(char1, char2, strIndex) **
 
 ## _Back-End Unit Tests_
 #### Tests in [main_test.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/main/src/server/main_test.go)
@@ -70,6 +86,6 @@
 
 #### _Proxy Testing_
 > NOTE: This has been deprecated, no proxy server is necessary for testing/demoing. The information about getting permission to run scripts may still be useful.
-> A proxy server configuration is used for front-end-to-back-end communication testing. Configuration options can be found in the proxy.conf.json file. To run the proxy server, use command "ng serve --proxy-config proxy.conf.json". If your machine is not permitted to run scripts, run Windows Powershell as Administrator, run command "Get-ExecutionPolicy", then type "Y" to confirm. Once finished running the proxy server, it is **highly recommended** that you run the command "Set-ExecutionPolicy Restricted" for eliminate security vulnerabilities on your local machine. 
+> A proxy server configuration is used for front-end-to-back-end communication testing. Configuration options can be found in the proxy.conf.json file. To run the proxy server, use command "ng serve --proxy-config proxy.conf.json". If your machine is not permitted to run scripts, run Windows Powershell as Administrator, then run command "Get-ExecutionPolicy" to get the current policy level. To escalate the policy, run the command "Set-ExecutionPolicy RemoteSigned" then type "Y" to confirm. Once finished running the proxy server, it is **highly recommended** that you run the command "Set-ExecutionPolicy Restricted" to eliminate security vulnerabilities on your local machine. 
 
 > Proxy log levels can be configured in the proxy.conf.json file; is no log level is specified, the default option is "info", but the log level in our proxy file is currently set to "debug". Other log level options are: warn, error, and silent. Please see this [guide](https://angular.io/guide/build) for more information on setting up and running a proxy server in Angular.
