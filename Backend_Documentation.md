@@ -13,7 +13,7 @@
 
 > A **new user registering** on the website requires a POST request (routes.PostUser); in the database, **usernames are labeled "uname"** and **passwords are labeled "pass"**.
 
-> An **existing user logging in** should call the custom route (routes.AuthenticateUser). 
+> An **existing user logging in** should call the custom route (routes.AuthenticateUser). Once authenticated, a user is authorized for a 24-hour period. The user's cookie for the new session is set on the response to the client. 
 
 > Getting information about a user requires a GET request to "users/{uid}" where uid is a user's ID assigned at the time their database entry is created. Currently, you cannot get a user with their username, but this should be addressed soon.
 
