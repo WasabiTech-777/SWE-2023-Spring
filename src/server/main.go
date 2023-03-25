@@ -30,7 +30,8 @@ func main() {
 	router.HandleFunc("/users", routes.PostUser).Methods("OPTIONS", "POST")
 	router.HandleFunc("/users/{uid}", routes.PutUser).Methods("PUT")
 	router.HandleFunc("/users/{uid}", routes.DeleteUser).Methods("DELETE")
-	router.HandleFunc("/login", routes.AuthenticateUser)
+	router.HandleFunc("/login", routes.AuthenticateUser).Methods("OPTIONS", "POST")
+	router.HandleFunc("/token", routes.ValidateToken).Methods("OPTIONS", "POST")
 	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), handlers.CORS(headers, methods, origins)(router)))
 
 }

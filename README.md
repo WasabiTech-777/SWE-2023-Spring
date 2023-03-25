@@ -31,6 +31,8 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 
 > An **existing user logging in** should submit a POST request on the route "/login" with the username and password. If the user credentials are valid, the server will return a cookie to authenticate the user in the future.  
 
+> Tokens can be authenticated submitting a POST request on the "/token" route with the JWT token. The writer returns the usernanme of the user if the request is the token is sucessfully validated. 
+
 > Getting information about a user requires a GET request to "/users/{uid}" where uid is a user's ID assigned at the time their database entry is created. Currently, you cannot get a user with their username, but this should be addressed soon.
 
 > Editing a user requires a PUT request to "/users/{uid}".
