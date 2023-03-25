@@ -75,6 +75,24 @@ func TestGET(test *testing.T) {
 	}
 }
 
+func TestGetUsers(test *testing.T) {
+
+	ts := httptest.NewServer(http.HandlerFunc(routes.GetUsers))
+	//Check that the method is GET
+	defer ts.Close()
+
+	resp, err := http.Get("http://localhost:9000/users")
+
+	if err != nil {
+		test.Error(err)
+	}
+
+	// Check that the response status code is 200 Success
+	if resp.StatusCode != http.StatusOK {
+		test.Errorf("Expected status code %d, got %d", http.StatusCreated, resp.StatusCode)
+	}
+}
+
 func TestPOST(test *testing.T) {
 	var user models.User
 	// Create a new test server with a handler function that handles the POST request
