@@ -4,10 +4,13 @@ go 1.20
 
 require (
 	github.com/WasabiTech-777/SWE-2023-Spring v0.0.0-20230225214026-ec07943c03e6 // indirect
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/fatih/color v1.9.0 // indirect
 	github.com/felixge/httpsnoop v1.0.1 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/githubnemo/CompileDaemon v1.4.0 // indirect
+	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
+	github.com/golang-jwt/jwt/v5 v5.0.0-rc.1 // indirect
 	github.com/gorilla/handlers v1.5.1 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
