@@ -27,11 +27,11 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 
 ### _Event Handlers_
 
-> A **new user registering** on the website requires a POST request (routes.PostUser); in the database, **usernames are labeled "uname"** and **passwords are labeled "pass"**.
+> A **new user registering** on the website requires a POST request on the clientside on the route "/users", **usernames are labeled "uname"** and **passwords are labeled "pass"**.
 
-> An **existing user logging in** should call the custom route (routes.AuthenticateUser). 
+> An **existing user logging in** should submit a POST request on the route "/login" with the username and password. If the user credentials are valid, the server will return a cookie to authenticate the user in the future.  
 
-> Getting information about a user requires a GET request to "users/{uid}" where uid is a user's ID assigned at the time their database entry is created. Currently, you cannot get a user with their username, but this should be addressed soon.
+> Getting information about a user requires a GET request to "/users/{uid}" where uid is a user's ID assigned at the time their database entry is created. Currently, you cannot get a user with their username, but this should be addressed soon.
 
 > Editing a user requires a PUT request to "/users/{uid}".
 
