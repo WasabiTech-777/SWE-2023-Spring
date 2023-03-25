@@ -93,6 +93,7 @@ func TestGetUsers(test *testing.T) {
 	}
 }
 
+// NOTE: The following tests MUST be performed in order; they are dependent on each other
 func TestPOST(test *testing.T) {
 	var user models.User
 	// Create a new test server with a handler function that handles the POST request
@@ -136,7 +137,29 @@ func TestPOST(test *testing.T) {
 	}
 
 	// Check that the response status code is 200 Success
-	if resp.StatusCode != 200 {
+	if resp.StatusCode != http.StatusOK {
+		test.Errorf("Expected status code %d, got %d", http.StatusCreated, resp.StatusCode)
+	}
+}
+
+func TestGetUser(test *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(routes.GetUser))
+	//Check that the method is GET
+	defer ts.Close()
+
+	//var testUser models.User
+	//findUser(testUser)
+	//getUrl := "http://localhost:9000/users/%v, testUser.ID"
+
+	//resp, err := http.Get(getUrl)
+	resp, err := http.Get("http://localhost:9000/users/1000")
+
+	if err != nil {
+		test.Error(err)
+	}
+
+	// Check that the response status code is 200 Success
+	if resp.StatusCode != http.StatusOK {
 		test.Errorf("Expected status code %d, got %d", http.StatusCreated, resp.StatusCode)
 	}
 }
