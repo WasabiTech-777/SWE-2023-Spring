@@ -22,18 +22,20 @@ type JwtCredentials struct {
 
 var jwtkey = []byte(os.Getenv("JWT_key"))
 
+func GenerateHashedPassword(user *models.User) {
+	pwCost := 16
+	//original password strings cannot exceed 72 bytes
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Pass), pwCost)
+	if err != nil {
+		fmt.Println("Password is too long! Maximum length is 72 characters.")
+	}
 
+	mismatch := bcrypt.CompareHashAndPassword(hashedPassword, []byte(user.Pass))
+	if mismatch != nil {
+		fmt.Println("Hash failed!")
+	}
 
-
-func GetHome(writer http.ResponseWriter, request *http.Request) {
-	fmt.Fprintf(writer, "API Home")
-}
-
-func GetUsers(writer http.ResponseWriter, request *http.Request) {
-	writer.Header().Set("Content-Type", "application/json")
-	var users []models.User
-	initialize.DB.Find(&users)
-	json.NewEncoder(writer).Encode(&users)
+	user.Pass = string(hashedPassword)
 }
 
 func AuthenticateUser(writer http.ResponseWriter, request *http.Request) {
@@ -86,6 +88,51 @@ func AuthenticateUser(writer http.ResponseWriter, request *http.Request) {
 	}
 }
 
+func ValidateToken(writer http.ResponseWriter, request *http.Request) {
+	cookie, err := request.Cookie("token")
+
+	if err != nil {
+		if err == http.ErrNoCookie {
+			writer.WriteHeader(http.StatusUnauthorized)
+		} else {
+			writer.WriteHeader(http.StatusBadRequest)
+		}
+	} else {
+
+		fmt.Println("Parsed Token")
+		tokenValue := cookie.Value
+		claims := &JwtCredentials{}
+
+		token, err := jwt.ParseWithClaims(tokenValue, claims, func(tkn *jwt.Token) (interface{}, error) {return jwtkey, nil})
+		
+		if err != nil {
+			if err == jwt.ErrSignatureInvalid {
+				writer.WriteHeader(http.StatusUnauthorized)
+			}
+			writer.WriteHeader(http.StatusBadRequest)
+		} else {
+			if token.Valid {
+				writer.Header().Set("Content-Type", "application/json")
+				json.NewEncoder(writer).Encode(claims)
+			} else {
+				writer.WriteHeader(http.StatusUnauthorized)
+			}
+			
+		}
+	}
+}
+
+func GetHome(writer http.ResponseWriter, request *http.Request) {
+	fmt.Fprintf(writer, "API Home")
+}
+
+func GetUsers(writer http.ResponseWriter, request *http.Request) {
+	writer.Header().Set("Content-Type", "application/json")
+	var users []models.User
+	initialize.DB.Find(&users)
+	json.NewEncoder(writer).Encode(&users)
+}
+
 func GetUser(writer http.ResponseWriter, request *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(request)
@@ -102,22 +149,6 @@ func GetUser(writer http.ResponseWriter, request *http.Request) {
 
 	json.NewEncoder(writer).Encode(user)
 
-}
-
-func GenerateHashedPassword(user *models.User) {
-	pwCost := 16
-	//original password strings cannot exceed 72 bytes
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Pass), pwCost)
-	if err != nil {
-		fmt.Println("Password is too long! Maximum length is 72 characters.")
-	}
-
-	mismatch := bcrypt.CompareHashAndPassword(hashedPassword, []byte(user.Pass))
-	if mismatch != nil {
-		fmt.Println("Hash failed!")
-	}
-
-	user.Pass = string(hashedPassword)
 }
 
 func PostUser(writer http.ResponseWriter, request *http.Request) {
