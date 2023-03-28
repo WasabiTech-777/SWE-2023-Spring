@@ -4,15 +4,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"time"
 	"os"
+	"time"
 
 	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/initialize"
 	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/models"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/mux"
 	"golang.org/x/crypto/bcrypt"
-	"github.com/dgrijalva/jwt-go"
-
 )
 
 type JwtCredentials struct {
@@ -63,7 +62,7 @@ func AuthenticateUser(writer http.ResponseWriter, request *http.Request) {
 		// Settign expiration time of jwt token for one day
 		expiration := time.Now().Add(time.Hour * 24)
 
-		// Declare custom claims using the username 
+		// Declare custom claims using the username
 		claims := JwtCredentials{
 			Name: storedUser.Name,
 			StandardClaims: jwt.StandardClaims{
@@ -79,10 +78,10 @@ func AuthenticateUser(writer http.ResponseWriter, request *http.Request) {
 		} else {
 			fmt.Println(signedToken)
 			http.SetCookie(writer, &http.Cookie{
-			Name: "token",
-			Value: signedToken,
-			Expires: expiration,
-		})
+				Name:    "token",
+				Value:   signedToken,
+				Expires: expiration,
+			})
 		}
 
 	}
@@ -103,8 +102,8 @@ func ValidateToken(writer http.ResponseWriter, request *http.Request) {
 		tokenValue := cookie.Value
 		claims := &JwtCredentials{}
 
-		token, err := jwt.ParseWithClaims(tokenValue, claims, func(tkn *jwt.Token) (interface{}, error) {return jwtkey, nil})
-		
+		token, err := jwt.ParseWithClaims(tokenValue, claims, func(tkn *jwt.Token) (interface{}, error) { return jwtkey, nil })
+
 		if err != nil {
 			if err == jwt.ErrSignatureInvalid {
 				writer.WriteHeader(http.StatusUnauthorized)
@@ -117,7 +116,7 @@ func ValidateToken(writer http.ResponseWriter, request *http.Request) {
 			} else {
 				writer.WriteHeader(http.StatusUnauthorized)
 			}
-			
+
 		}
 	}
 }
@@ -149,6 +148,22 @@ func GetUser(writer http.ResponseWriter, request *http.Request) {
 
 	json.NewEncoder(writer).Encode(user)
 
+}
+
+func GetUserFromName(writer http.ResponseWriter, request *http.Request) {
+	writer.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(request)
+	var user models.User
+	user.Name = params["uname"]
+	fmt.Println("Username: " + user.Name)
+	//search for user with name in params
+	result := initialize.DB.Where("name = ?", params["uname"]).First(&user)
+	//result := initialize.DB.First(&user, params["uname"])
+	if result.Error != nil {
+		writer.WriteHeader(http.StatusNotFound)
+		writer.Write([]byte("User does not exist"))
+	}
+	json.NewEncoder(writer).Encode(user)
 }
 
 func PostUser(writer http.ResponseWriter, request *http.Request) {
