@@ -12,7 +12,7 @@ import (
 
 	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/initialize"
 	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/models"
-	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/routes"
+	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/src/server/routes"
 )
 
 func TestLoadEnv(test *testing.T) {
@@ -152,6 +152,23 @@ func TestGetUser(test *testing.T) {
 	//getUrl := "http://localhost:9000/users/%v, testUser.ID"
 
 	//resp, err := http.Get(getUrl)
+	resp, err := http.Get("http://localhost:9000/users/1000")
+
+	if err != nil {
+		test.Error(err)
+	}
+
+	// Check that the response status code is 200 Success
+	if resp.StatusCode != http.StatusOK {
+		test.Errorf("Expected status code %d, got %d", http.StatusCreated, resp.StatusCode)
+	}
+}
+
+func TestGetUserFromName(test *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(routes.GetUserFromName))
+	//Check that the method is GET
+	defer ts.Close()
+
 	resp, err := http.Get("http://localhost:9000/users/1000")
 
 	if err != nil {
