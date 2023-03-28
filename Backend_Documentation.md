@@ -15,9 +15,20 @@
 
 > An **existing user logging in** should call the custom route (routes.AuthenticateUser). Once authenticated, a user is authorized for a 24-hour period. The user's cookie for the new session is set on the response to the client. 
 
-> Getting information about a user requires a GET request to "users/{uid}" where uid is a user's ID assigned at the time their database entry is created. Currently, you cannot get a user with their username, but this should be addressed soon.
+> Getting information about a user requires a GET request to "users/{uid}" where uid is a user's ID assigned at the time their database entry is created.
 
-> Editing a user requires a PUT request to "/users/{uid}".
+> Getting information about a user from their username is also possible; this requires a GET request to "uname/{uname}" where uname is the desired user's name. NOTE: this path starts with "uname" and not "users" to avoid undetermined behavior.
+
+> Editing a user requires a PUT request to "/users/{uid}". 
+> * To edit a user's username, the number of articles they have completed, the number of characters hit, or the number of characters missed, the json format of the request should be used:
+    {
+        "uname": "name", //string /*NOTE: if querying the database for a particular name, use "name = ?"
+        "pass": "password",  //string
+        "articles": 1, //uint
+        "charhit": 104, //uint
+        "charmiss": 10 //uint
+    }
+> * To edit the articles, charhit, or charmiss fields correctly, the new data must be added to any previously existing data. The previously existing data could be accessed through the Get user request at "users/{uid}" above.
 
 > Deleting a user requires a DELETE request to "/users/{uid}".
 
