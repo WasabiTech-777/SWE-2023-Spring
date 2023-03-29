@@ -40,6 +40,22 @@ export class AccountService {
     return valInfo;
   }
   validate() {
-    this.http.post(`${environment.serverUrl}/users`, {withCredentials: true});
+    this.http.post<HttpResponse<any>>(`${environment.serverUrl}/token`, {withCredentials: true}).subscribe();
+  }
+  decodeToken(token: any): Record<string, unknown> {
+    const _decodeToken = (token: string): Record<string, unknown> | undefined => {
+      try {
+        return JSON.parse(atob(token)) as Record<string, unknown>;
+      } catch {
+        return undefined;
+      }
+    };
+    return token
+      .split('.')
+      .map((token: any) => _decodeToken(token))
+      .reduce((acc: any, curr: any) => {
+        if (!!curr) acc = { ...acc, ...curr };
+        return acc;
+      }, Object.create(null));
   }
 }

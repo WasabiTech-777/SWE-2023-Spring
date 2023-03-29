@@ -13,9 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private hw: HelloWorldService) {}
 
   ngOnInit() {
-    this.hw.getTitle().subscribe(response => {console.log(response); this.title = (response as any).title});
-
-    console.log(this.title);
+    this.hw.getTitle().subscribe(response => {this.title = (response as any).title});
   }
 
 }

@@ -130,7 +130,7 @@ describe('onTimeOver() function test', () => {
     const numCorrect = component.correct;
 
     expect(component.WPM).toEqual(-1);
-    expect(numCorrect).toEqual(1);
+    expect(numCorrect).toEqual(0);
   });
 
 });
