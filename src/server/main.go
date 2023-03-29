@@ -27,6 +27,7 @@ func main() {
 	//Routes for User entity
 	router.HandleFunc("/users", routes.GetUsers).Methods("GET")
 	router.HandleFunc("/users/{uid}", routes.GetUser).Methods("GET")
+	router.HandleFunc("/uname/{uname}", routes.GetUserFromName).Methods("GET")
 	router.HandleFunc("/users", routes.PostUser).Methods("OPTIONS", "POST")
 	router.HandleFunc("/users/{uid}", routes.PutUser).Methods("PUT")
 	router.HandleFunc("/users/{uid}", routes.DeleteUser).Methods("DELETE")
