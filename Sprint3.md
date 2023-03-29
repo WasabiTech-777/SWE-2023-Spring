@@ -31,6 +31,11 @@ For this sprint, we focused on enabling sessions/cookies for registered Wi-key u
 * 
 ### Frontend Details ###
 
+####  [log-in.component.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/5159d7ebe84904dd363ec3932b869f453e1244c5/src/app/log-in/log-in.component.ts)
+The user can now log in by pressing the "Log In" button, which runs AuthenticateUser with the username and password fields as input.
+
+####  [profile-page.component.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/5159d7ebe84904dd363ec3932b869f453e1244c5/src/app/profile-page/profile-page.component.ts)
+A new page has been created which shows information about the user that is currently logged in. Currently it displays the username when logged in, and "Guest" when not.
 ### Backend Details ###
 
 #### [user.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/174bdd6c8f57efa12affba46334eadbfffbdb2a9/src/server/routes/user.go) ####
