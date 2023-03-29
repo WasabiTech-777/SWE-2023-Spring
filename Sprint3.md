@@ -20,7 +20,15 @@ We will be checking individual commits. If you do not commit code, you will not 
 ### [Video Demonstration for Sprint 3](tba.com) ###
 
 For this sprint, we focused on enabling sessions/cookies for registered Wi-key users. We also started investigating ways of tracking some user statistics, including characters hit, characters missed, and the number of articles a user has completed. We also added more backend unit tests. 
-
+### What issues the team planned to address + related user stories
+* Add functionality in the demo page to track progress, accuracy, and speed of the user.
+  * As a career typist, I want to log on to an engaging web app for typing so that I can maximize my typing speed and track my improvement over time.
+* Integrate front end with the back end, adding account functionality to the web app.
+  * As a typical user, I want my personal account information to be secure so that I am not vulnerable to a data breach affecting this service.
+### Which ones were successfully completed
+* We have made great progress on the login system. Users are now able to login and a token is saved which allows the server and client to retrieve user information.
+### Which ones didn't and why?
+* 
 ### Frontend Details ###
 
 ### Backend Details ###
