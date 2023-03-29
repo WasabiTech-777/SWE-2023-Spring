@@ -45,7 +45,11 @@ Unit tests for the new handlers were also added; these tests include "TestGetUse
 * **Test for DemoPage's wiki.name variable**
 * **Test for onTimeStop()**
 * **Test for compare(char1, char2, strIndex)**
-
+#### Tests in [log-in.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/log-in/log-in.component.spec.ts)
+* **Test for login (AuthenticateUser)**
+* #### Tests in [account.service.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/account.service.spec.ts)
+* **Test for validate (ValidateToken)**
+* **Test for decodeToken (decodes the JWT token so user info can be retrieved)**
 ### Backend Unit Tests ###
 
 #### Tests in [main_test.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/174bdd6c8f57efa12affba46334eadbfffbdb2a9/src/server/main_test.go)
