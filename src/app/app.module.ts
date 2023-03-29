@@ -17,13 +17,15 @@ import { CdTimerModule } from 'angular-cd-timer';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountService } from './account.service';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DemoPageComponent,
     LogInComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
