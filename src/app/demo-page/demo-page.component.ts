@@ -3,6 +3,8 @@ import { WikiPrompt } from '../wikiPrompt';
 import Keyboard from "simple-keyboard";
 import { CdTimerComponent, CdTimerModule } from 'angular-cd-timer';
 
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-demo-page',
   encapsulation: ViewEncapsulation.None,
@@ -15,7 +17,9 @@ export class DemoPageComponent {
     text: "The first people in Japan were the Ainu people and other Jōmon people. They were closer related to Europeans or Mongols. They were later conquered and replaced by the Yayoi people (early Japanese and Ryukyuans). The Yayoi were an ancient ethnic group that migrated to the Japanese archipelago mainly from southeastern China during the Yayoi period (300 BCE–300 CE). Modern Japanese people have primarily Yayoi ancestry at an average of 97%. The indigenous Ryukyuan and Ainu peoples have more Jōmon ancestry on the other hand.",
   };
 
-  constructor() {}
+  constructor(
+    private snackBar:MatSnackBar
+  ) {}
 
   usrText: string = "";
   usrInpt: string = "";
@@ -27,7 +31,7 @@ export class DemoPageComponent {
 
   WPM: number = 0;
   accuracy: number = 0;
-
+  
 
 
   ngOnInit(): void {
@@ -105,9 +109,21 @@ export class DemoPageComponent {
 
   onTimeOver = () => {
     if (this.correct != 0)
+    {
       this.WPM = (this.correct * 5) / 15
-    else
+      this.snackBar.open('WPM' , this.WPM.toPrecision(4).toString() , {
+        duration:3000,
+        verticalPosition:'top'
+      });
+    }
+    else{
       this.WPM = -1
+      this.snackBar.open('ERROR' , 'Typing area left blank', {
+        duration:10000,
+        verticalPosition:'top'
+      });
+    }
+      
     
     //Close form
 
