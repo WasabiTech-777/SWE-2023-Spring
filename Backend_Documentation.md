@@ -15,11 +15,11 @@
 
 > An **existing user logging in** should call the custom route (routes.AuthenticateUser). Once authenticated, a user is authorized for a 24-hour period. The user's cookie for the new session is set on the response to the client. 
 
-> Getting information about a user requires a GET request to "users/{uid}" where uid is a user's ID assigned at the time their database entry is created.
+> **Getting information about a user from their ID** requires a GET request to "users/{uid}" where uid is a user's ID assigned at the time their database entry is created.
 
-> Getting information about a user from their username is also possible; this requires a GET request to "uname/{uname}" where uname is the desired user's name. NOTE: this path starts with "uname" and not "users" to avoid undetermined behavior.
+> **Getting information about a user from their username** is also possible; this requires a GET request to "uname/{uname}" where uname is the desired user's name. NOTE: this path starts with "uname" and not "users" to avoid undetermined behavior.
 
-> Editing a user requires a PUT request to "/users/{uid}". 
+> **Editing a user** requires a PUT request to "/users/{uid}". 
 > * To edit a user's username, the number of articles they have completed, the number of characters hit, or the number of characters missed, the json format of the request should be used:
     {
         "uname": "name", //string /*NOTE: if querying the database for a particular name, use "name = ?"
@@ -28,13 +28,24 @@
         "charhit": 104, //uint
         "charmiss": 10 //uint
     }
-> * To edit the articles, charhit, or charmiss fields correctly, the new data must be added to any previously existing data. The previously existing data could be accessed through the Get user request at "users/{uid}" above.
+> * To **edit the articles, charhit, or charmiss fields** correctly, the new data must be added to any previously existing data. The previously existing data could be accessed through the Get user request at "users/{uid}" above.
 
-> Deleting a user requires a DELETE request to "/users/{uid}".
+> **Deleting a user** requires a DELETE request to "/users/{uid}".
 
-> Getting all users requires a GET request to "/users".
+> **Getting all users** requires a GET request to "/users".
 
-> Header Access Control is located in [main.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/main/src/server/main.go). 
+> **Checking if a user is authorized** requires a POST request to /token. 
+> * The request body should be in this format:
+        {
+        "token" : "long_cookie_string_in_header_of_/login_response"
+        }
+> * The response body returned will be in this format:
+        {
+            "uname" : "user's_name",
+            "exp: 1230983 //randomly generated uid
+        }
+
+> **Header Access Control** is located in [main.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/main/src/server/main.go). 
 
 ### _Quick Start for Running the Project End-to-End_
 
