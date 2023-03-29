@@ -18,9 +18,9 @@ func main() {
 	initialize.Connect()
 	initialize.Migrate()
 	router := mux.NewRouter()
-	headers := handlers.AllowedHeaders([]string{"Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Authentication", "content-type", os.Getenv("angular_domain")})
+	headers := handlers.AllowedHeaders([]string{"Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Access-Control-Allow-Credentials", "Authentication", "content-type", os.Getenv("angular_domain")})
 	methods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"})
-	origins := handlers.AllowedOrigins([]string{"*"})
+	origins := handlers.AllowedOrigins([]string{"http://localhost:4200"})
 	//Test hello world
 	router.HandleFunc("/", routes.GetHome).Methods("GET")
 
@@ -33,6 +33,6 @@ func main() {
 	router.HandleFunc("/users/{uid}", routes.DeleteUser).Methods("DELETE")
 	router.HandleFunc("/login", routes.AuthenticateUser).Methods("OPTIONS", "POST")
 	router.HandleFunc("/token", routes.ValidateToken).Methods("OPTIONS", "POST")
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), handlers.CORS(headers, methods, origins)(router)))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), handlers.CORS(headers, methods, origins, handlers.AllowCredentials())(router)))
 
 }

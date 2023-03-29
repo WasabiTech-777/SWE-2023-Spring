@@ -39,6 +39,7 @@ func GenerateHashedPassword(user *models.User) {
 
 func AuthenticateUser(writer http.ResponseWriter, request *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
+	writer.Header().Set("Access-Control-Allow-Credentials", "true")
 	var userCredentials models.User
 	json.NewDecoder(request.Body).Decode(&userCredentials)
 

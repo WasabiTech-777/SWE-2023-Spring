@@ -10,5 +10,6 @@ export class ProfilePageComponent {
   constructor(private account: AccountService) { }
   ngOnInit(){
     this.account.validate();
+    console.log(document.cookie)
   }
 }

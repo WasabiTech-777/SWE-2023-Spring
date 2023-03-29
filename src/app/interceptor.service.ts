@@ -8,6 +8,7 @@ export class InterceptorService implements HttpInterceptor {
 
     const corsReq = req.clone({
       headers: req.headers.set('Access-Control-Allow-Origin', '*')
+      .set("Access-Control-Allow-Credentials", 'true')
     });
 
     return next.handle(corsReq);

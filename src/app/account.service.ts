@@ -18,7 +18,7 @@ export class AccountService {
       "charhit":0,
       "charmiss":0
     }
-    var valInfo = this.http.post<HttpResponse<any>>(`${environment.serverUrl}/login`, userInfo, {observe: 'response'});
+    var valInfo = this.http.post<HttpResponse<any>>(`${environment.serverUrl}/login`, userInfo, {observe: 'response', withCredentials: true});
     console.log(userInfo);
     valInfo.subscribe(
       (data: HttpResponse<any>) => {
@@ -40,6 +40,6 @@ export class AccountService {
     return valInfo;
   }
   validate() {
-    
+    this.http.post(`${environment.serverUrl}/users`, {withCredentials: true});
   }
 }
