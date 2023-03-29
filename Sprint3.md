@@ -53,7 +53,7 @@ Unit tests for the new handlers were also added; these tests include "TestGetUse
 * **Visits the home page (currently the login page), then navigates to the register page and fills in the username and password fields, and finally clicks the sign up button to create a new account. The HTTP requests are checked for 200 OK responses.**
 #### Cypress test in [demoPage.spec.cy.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/d28ae8915ec5ed7c40697cf1399cac0636e6f18d/cypress/e2e/demoPage.spec.cy.ts)
 * **Visits the home page (currently the login page), then navigates to the demo page and fills the text area and the resulting WPM, text length, # of correct keystrokes, and # of mistakes is correct. This is repeated 2 more times with different text inputs**
-#### Cypress test in [login.spec.cy.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/d28ae8915ec5ed7c40697cf1399cac0636e6f18d/cypress/e2e/login.spec.cy.ts)
+#### Cypress test in [login.spec.cy.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/456cdb1aa202ff37cd4707f5fbe604fa4c537fa0/cypress/e2e/login.spec.cy.ts)
 * **Visits the home page (currently the login page), then inputs a valid username and password into the respective fields, and finally clicks the log in button to log into an account. It then navigates to the profile page via a successful login.**
 
 #### Tests in [app.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/5159d7ebe84904dd363ec3932b869f453e1244c5/src/app/app.component.spec.ts)
