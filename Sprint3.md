@@ -85,5 +85,5 @@ Unit tests for the new handlers were also added; these tests include "TestGetUse
 * **TestAuthenticateUser** [EXPANDED]
 * **TestValidateToken** [NEW]
 
-## Updated Backend Documentation ##
+## _Updated Backend Documentation_ ##
 Please see [Backend_Documentation.md](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/51e2cc30a810aa0da4dd435826402799daeee1ba/Backend_Documentation.md)
