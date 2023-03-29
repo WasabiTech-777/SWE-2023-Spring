@@ -29,11 +29,11 @@ For this sprint, we focused on enabling sessions/cookies for registered Wi-key u
 Functionality was added to the "AuthenticateUser" function to generate a token after a user is successfully authenticated. This token is used to create a cookie. A new function "ValidateToken" was created to check the validity of a token; upon successful validation, a user is authorized.
 
 #### [main.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/174bdd6c8f57efa12affba46334eadbfffbdb2a9/src/server/main.go) ####
-Two new routes were added to access the functionality in user.go: "/token" for ValidateToken, and "/users/{uname}" for finding a user by their username (in progress). 
+Two new routes were added to access the functionality in user.go: "/token" for ValidateToken, and "/uname/{uname}" for GetUserFromName. 
 
 #### [main_test.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/174bdd6c8f57efa12affba46334eadbfffbdb2a9/src/server/main_test.go) ####
 Multiple unit tests were added. "TestGetUsers" and "TestGetUser" were not completed in time for Sprint 2, but are now complete and integrated into an appropriate sequence with the other unit tests for user handlers. 
-Unit tests for the new handlers were also added. 
+Unit tests for the new handlers were also added; these tests include "TestGetUserFromName" and "TestValidateToken"
 
 ### Frontend Unit Tests ###
 
@@ -56,9 +56,11 @@ Unit tests for the new handlers were also added.
 * **TestGetUsers**  [NEW]
 * **TestPOST**
 * **TestGetUser**   [NEW]
+* **TestGetUserFromName** [NEW]
 * **TestPUT**
 * **TestDELETE**
-* **TestAuthenticateUser**
+* **TestAuthenticateUser** [EXPANDED]
+* **TestValidateToken** [NEW]
 
 ### Updated Backend Documentation ###
 Please see [Backend_Documentation.md](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/51e2cc30a810aa0da4dd435826402799daeee1ba/Backend_Documentation.md)
