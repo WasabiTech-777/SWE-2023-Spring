@@ -28,7 +28,7 @@ For this sprint, we focused on enabling sessions/cookies for registered Wi-key u
 ### Which ones were successfully completed
 * We have made great progress on the login system. Users are now able to login and a token is saved which allows the server and client to retrieve user information.
 ### Which ones didn't and why?
-* 
+* Not much progress was made on the actual typing program as we focused most of our time into developing the account system.
 ## _Frontend Details_ ##
 
 ####  [log-in.component.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/5159d7ebe84904dd363ec3932b869f453e1244c5/src/app/log-in/log-in.component.ts)
