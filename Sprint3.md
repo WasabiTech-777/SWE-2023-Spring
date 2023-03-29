@@ -37,17 +37,17 @@ Unit tests for the new handlers were also added; these tests include "TestGetUse
 
 ### Frontend Unit Tests ###
 
-#### Tests in [app.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/app.component.spec.ts)
+#### Tests in [app.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/5159d7ebe84904dd363ec3932b869f453e1244c5/src/app/app.component.spec.ts)
 * **Test for helloWorld (getUsers)**
-#### Tests in [registration.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/registration/registration.component.spec.ts)
+#### Tests in [registration.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/5159d7ebe84904dd363ec3932b869f453e1244c5/src/app/registration/registration.component.spec.ts)
 * **Test for helloWorld (getUsers)**
-#### Tests in [demo-page.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/demo-page/demo-page.component.spec.ts)
+#### Tests in [demo-page.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/5159d7ebe84904dd363ec3932b869f453e1244c5/src/app/demo-page/demo-page.component.spec.ts)
 * **Test for DemoPage's wiki.name variable**
 * **Test for onTimeStop()**
 * **Test for compare(char1, char2, strIndex)**
-#### Tests in [log-in.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/log-in/log-in.component.spec.ts)
+#### Tests in [log-in.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/5159d7ebe84904dd363ec3932b869f453e1244c5/src/app/log-in/log-in.component.spec.ts)
 * **Test for login (AuthenticateUser)**
-* #### Tests in [account.service.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/62a5d1f2e0e04d95f3aba275a97949f16396101f/src/app/account.service.spec.ts)
+#### Tests in [account.service.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/5159d7ebe84904dd363ec3932b869f453e1244c5/src/app/account.service.spec.ts)
 * **Test for validate (ValidateToken)**
 * **Test for decodeToken (decodes the JWT token so user info can be retrieved)**
 ### Backend Unit Tests ###
