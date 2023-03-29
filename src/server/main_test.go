@@ -15,6 +15,8 @@ import (
 	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/src/server/routes"
 )
 
+var cookie *http.Cookie
+
 func TestLoadEnv(test *testing.T) {
 	initialize.LoadEnv()
 	dsn := os.Getenv("DSN")
@@ -140,6 +142,7 @@ func TestPOST(test *testing.T) {
 	if resp.StatusCode != http.StatusOK {
 		test.Errorf("Expected status code %d, got %d", http.StatusCreated, resp.StatusCode)
 	}
+
 }
 
 func TestGetUser(test *testing.T) {
@@ -255,7 +258,7 @@ func TestAuthenicateUser(test *testing.T) {
 	}))
 	defer ts.Close()
 	//Post request to create new user
-	reqBody := []byte(`{"uname": "Gator2", "pass": "Gator"}`)
+	reqBody := []byte(`{"uname": "Gator1", "pass": "Gator"}`)
 	resp, err := http.Post("http://localhost:9000/users", "application/json", bytes.NewBuffer(reqBody))
 	if err != nil {
 		test.Error(err)
@@ -275,6 +278,42 @@ func TestAuthenicateUser(test *testing.T) {
 			test.Errorf("handler returned wrong status code: got %v want %v",
 				req.Response.StatusCode, http.StatusOK)
 		}
+
+		cookie := req.Response.Header.Get("Set-Cookie")
+		if cookie != "" {
+			test.Logf("PASSED. Cookie set")
+		} else {
+			test.Errorf("FAILED. Cookie not set")
+		}
+	}
+}
+
+func TestValidateToken(test *testing.T) {
+	//Creating a new server for testing
+
+	ts := httptest.NewServer(http.HandlerFunc(routes.ValidateToken))
+	defer ts.Close()
+	//Post request to create new user
+	reqString := `{"token" : ` + cookie.String() + `"}`
+	reqBody := []byte(reqString)
+	//resp, err := http.Post("http://localhost:9000/users", "application/json", bytes.NewBuffer(reqBody))
+	//if err != nil {
+	//	test.Error(err)
+	//}
+
+	//If new user was made successfully. authenticate that user with valid credentials
+	//if resp.StatusCode == 0 {
+	req, err := http.NewRequest("ValidateToken", "http://localhost:9000/token", bytes.NewBuffer(reqBody))
+	if err != nil {
+		test.Fatal(err)
+	}
+
+	req.Header.Set("Content-Type", "application/json")
+
+	// Check that the response status code is 200
+	if req.Response.StatusCode != http.StatusOK {
+		test.Errorf("handler returned wrong status code: got %v want %v",
+			req.Response.StatusCode, http.StatusOK)
 	}
 }
 
