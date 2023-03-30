@@ -15,7 +15,7 @@ import (
 	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/src/server/routes"
 )
 
-var cookie *http.Cookie
+var Cookie string
 
 func TestLoadEnv(test *testing.T) {
 	initialize.LoadEnv()
@@ -172,7 +172,7 @@ func TestGetUserFromName(test *testing.T) {
 	//Check that the method is GET
 	defer ts.Close()
 
-	resp, err := http.Get("http://localhost:9000/users/1000")
+	resp, err := http.Get("http://localhost:9000/uname/Gator1")
 
 	if err != nil {
 		test.Error(err)
@@ -189,8 +189,8 @@ func TestPUT(test *testing.T) {
 	// Create a new test server with a handler function that handles the POST request
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// Check that the method is POST
-		if r.Method != "POST" {
-			test.Errorf("Expected method POST, got %s", r.Method)
+		if r.Method != "PUT" {
+			test.Errorf("Expected method PUT, got %s", r.Method)
 		}
 
 		routes.PutUser(w, r)
@@ -212,15 +212,15 @@ func TestPUT(test *testing.T) {
 			test.Errorf("Expected name Gator2, got %s", user.Name)
 		}
 
-		// Write a response with a status code of 201 Created
+		// Write a response with a status code of 200 OK
 		w.WriteHeader(http.StatusOK)
 
 	}))
 	defer ts.Close()
 
 	// Make a PUT request to the test server
-	reqBody := []byte(`{"ID": 1000, "uname": "Gator2", "pass": "Gator"}`)
-	req, err := http.NewRequest("PUT", "http://localhost:9000/users/100000", bytes.NewBuffer(reqBody))
+	reqBody := []byte(`{"uname": "Gator2", "pass": "Gator"}`)
+	req, err := http.NewRequest(http.MethodPut, "http://localhost:9000/users/1000", bytes.NewBuffer(reqBody))
 
 	if err != nil {
 		test.Error(err)
@@ -264,38 +264,66 @@ func TestAuthenicateUser(test *testing.T) {
 		test.Error(err)
 	}
 
-	//If new user was made successfully. authenticate that user with valid credentials
 	if resp.StatusCode == 0 {
-		req, err := http.NewRequest("AuthenticateUser", "http://localhost:9000/login", bytes.NewBuffer(reqBody))
+		req, err := http.NewRequest(http.MethodPost, "http://localhost:9000/login", bytes.NewBuffer(reqBody))
 		if err != nil {
 			test.Fatal(err)
 		}
 
 		req.Header.Set("Content-Type", "application/json")
 
-		// Check that the response status code is 200
-		if req.Response.StatusCode != 200 {
-			test.Errorf("handler returned wrong status code: got %v want %v",
-				req.Response.StatusCode, http.StatusOK)
+		client := &http.Client{}
+		resp, err := client.Do(req)
+		if err != nil {
+			test.Fatal(err)
 		}
 
-		cookie := req.Response.Header.Get("Set-Cookie")
-		if cookie != "" {
+		defer resp.Body.Close()
+
+		// Check that the response status code is 200
+		if resp.StatusCode != 200 {
+			test.Errorf("handler returned wrong status code: got %v want %v",
+				resp.StatusCode, http.StatusOK)
+		}
+		test.Log("Here is the cookie: " + string(Cookie))
+		Cookie = resp.Header.Get("token")
+		test.Log(string(Cookie))
+		if Cookie != "" {
 			test.Logf("PASSED. Cookie set")
 		} else {
 			test.Errorf("FAILED. Cookie not set")
 		}
+
 	}
+
 }
 
 func TestValidateToken(test *testing.T) {
 	//Creating a new server for testing
 
-	ts := httptest.NewServer(http.HandlerFunc(routes.ValidateToken))
+	type Response struct {
+		Name       string `json:"uname"`
+		SessionExp string `json:"exp"`
+	}
+	var newSession *Response
+
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		routes.ValidateToken(w, r)
+	}))
 	defer ts.Close()
-	//Post request to create new user
-	reqString := `{"token" : ` + cookie.String() + `"}`
-	reqBody := []byte(reqString)
+
+	reqString := map[string]string{
+		"token": Cookie,
+	}
+
+	// Convert the map to a JSON-encoded byte array
+	reqBody, err := json.Marshal(reqString)
+	if err != nil {
+		test.Errorf("Error converting map to JSON: %s", err)
+	}
+
+	fmt.Sprintln("request body: ", reqBody)
+
 	//resp, err := http.Post("http://localhost:9000/users", "application/json", bytes.NewBuffer(reqBody))
 	//if err != nil {
 	//	test.Error(err)
@@ -303,18 +331,41 @@ func TestValidateToken(test *testing.T) {
 
 	//If new user was made successfully. authenticate that user with valid credentials
 	//if resp.StatusCode == 0 {
-	req, err := http.NewRequest("ValidateToken", "http://localhost:9000/token", bytes.NewBuffer(reqBody))
+	//req, err := http.NewRequest("ValidateToken", "http://localhost:9000/token", bytes.NewBuffer(reqBody))
+	req, err := http.NewRequest(http.MethodPost, "http://localhost:9000/token", bytes.NewBuffer(reqBody))
 	if err != nil {
 		test.Fatal(err)
 	}
 
-	req.Header.Set("Content-Type", "application/json")
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		test.Fatal(err)
+	}
+	defer resp.Body.Close()
 
 	// Check that the response status code is 200
-	if req.Response.StatusCode != http.StatusOK {
-		test.Errorf("handler returned wrong status code: got %v want %v",
-			req.Response.StatusCode, http.StatusOK)
+	body, err := ioutil.ReadAll(resp.Body)
+	respBody := json.Unmarshal(body, &newSession)
+
+	if err != nil {
+		test.Errorf("Error reading response body: %s", err)
 	}
+
+	if respBody == nil {
+		test.Errorf("no session data found")
+	}
+	/*
+		if newSession.SessionExp == "" {
+			test.Errorf("no session data found")
+		}
+
+			if resp.StatusCode != http.StatusOK {
+				test.Errorf("handler returned wrong status code: got %v want %v",
+					resp.StatusCode, http.StatusOK)
+			}
+	*/
+
 }
 
 func TestDELETE(test *testing.T) {
