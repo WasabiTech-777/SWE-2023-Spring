@@ -17,7 +17,8 @@ We will be checking individual commits. If you do not commit code, you will not 
 
 ## _Work Completed in Sprint 3_ ##
 
-### [Video Demonstration for Sprint 3](tba.com) ###
+### [Video Demonstration for Sprint 3](https://youtu.be/XhNUXZZ_6Bk) ###
+### [Alternate Link for Sprint 3 Video](https://clipchamp.com/watch/FMN3fO4qFXd)
 
 For this sprint, we focused on enabling sessions/cookies for registered Wi-key users. We also started investigating ways of tracking some user statistics, including characters hit, characters missed, and the number of articles a user has completed. We also added more backend unit tests. 
 ### What issues the team planned to address + related user stories
