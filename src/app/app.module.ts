@@ -14,7 +14,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { RegistrationComponent } from './registration/registration.component';
 
 import { CdTimerModule } from 'angular-cd-timer';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule,  MatSnackBar} from '@angular/material/snack-bar';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountService } from './account.service';
@@ -38,7 +38,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     FormsModule,
     CdTimerModule, 
     ReactiveFormsModule,
-    MatSnackBarModule,
+    MatSnackBarModule
 
   ],
   providers: [HelloWorldService,     

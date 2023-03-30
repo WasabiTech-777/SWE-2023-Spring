@@ -1,9 +1,10 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { WikiPrompt } from '../wikiPrompt';
 import Keyboard from "simple-keyboard";
 import { CdTimerComponent, CdTimerModule } from 'angular-cd-timer';
 
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-demo-page',
@@ -11,6 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './demo-page.component.html',
   styleUrls: ['./demo-page.component.css']
 })
+
+
 export class DemoPageComponent {
   wiki: WikiPrompt = { 
     name: "Japan",
@@ -112,14 +115,21 @@ export class DemoPageComponent {
     {
       this.WPM = (this.correct * 5) / 15
       this.snackBar.open('WPM' , this.WPM.toPrecision(4).toString() , {
-        duration:3000,
+        duration:1000,
+        verticalPosition:'top'
+      });
+    }
+    else if (this.errors != 0){
+      this.WPM = -1
+      this.snackBar.open('ERROR' , 'WPM could not be calculated', {
+        duration:1000,
         verticalPosition:'top'
       });
     }
     else{
       this.WPM = -1
       this.snackBar.open('ERROR' , 'Typing area left blank', {
-        duration:10000,
+        duration:2000,
         verticalPosition:'top'
       });
     }

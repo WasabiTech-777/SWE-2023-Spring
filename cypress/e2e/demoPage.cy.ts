@@ -30,5 +30,6 @@ describe('DemoPage', () => {
     cy.get('[placeholder="infoBar"]').should("have.text", "Text Length: 525 || # of Correct Keystrokes: 512 || # of Mistakes: 13")
     cy.get('[placeholder="WPM"]').should("have.text", "Words Per Minute: 170.667")
 
+    cy.get('button').contains('My Profile').click()
   })
 })
