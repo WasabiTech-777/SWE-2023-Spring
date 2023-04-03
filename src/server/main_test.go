@@ -17,6 +17,8 @@ import (
 
 var Cookie string
 
+const SERVER_ROUTE = "http://localhost:9000"
+
 func TestLoadEnv(test *testing.T) {
 	initialize.LoadEnv()
 	dsn := os.Getenv("DSN")
@@ -83,7 +85,7 @@ func TestGetUsers(test *testing.T) {
 	//Check that the method is GET
 	defer ts.Close()
 
-	resp, err := http.Get("http://localhost:9000/users")
+	resp, err := http.Get(SERVER_ROUTE + "/users")
 
 	if err != nil {
 		test.Error(err)
@@ -132,7 +134,7 @@ func TestPOST(test *testing.T) {
 
 	// Make a POST request to the test server
 	reqBody := []byte(`{"ID": 1000, "uname": "Gator1", "pass": "Gator"}`)
-	resp, err := http.Post("http://localhost:9000/users", "application/json", bytes.NewBuffer(reqBody))
+	resp, err := http.Post((SERVER_ROUTE + "/users"), "application/json", bytes.NewBuffer(reqBody))
 
 	if err != nil {
 		test.Error(err)
@@ -147,15 +149,10 @@ func TestPOST(test *testing.T) {
 
 func TestGetUser(test *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(routes.GetUser))
-	//Check that the method is GET
+
 	defer ts.Close()
 
-	//var testUser models.User
-	//findUser(testUser)
-	//getUrl := "http://localhost:9000/users/%v, testUser.ID"
-
-	//resp, err := http.Get(getUrl)
-	resp, err := http.Get("http://localhost:9000/users/1000")
+	resp, err := http.Get(SERVER_ROUTE + "/users/1000")
 
 	if err != nil {
 		test.Error(err)
@@ -172,7 +169,7 @@ func TestGetUserFromName(test *testing.T) {
 	//Check that the method is GET
 	defer ts.Close()
 
-	resp, err := http.Get("http://localhost:9000/uname/Gator1")
+	resp, err := http.Get(SERVER_ROUTE + "/uname/Gator1")
 
 	if err != nil {
 		test.Error(err)
@@ -219,14 +216,15 @@ func TestPUT(test *testing.T) {
 	defer ts.Close()
 
 	// Make a PUT request to the test server
-	reqBody := []byte(`{"uname": "Gator2", "pass": "Gator"}`)
-	req, err := http.NewRequest(http.MethodPut, "http://localhost:9000/users/1000", bytes.NewBuffer(reqBody))
+	reqBody := []byte(`{"Name": "Gator2", "Password": "Gator"}`)
+	//reqBody := []byte(`{"uname": "Gator2", "pass": "Gator"}`)
+	req, err := http.NewRequest("PUT", (SERVER_ROUTE + "/users/1000"), bytes.NewBuffer(reqBody))
 
 	if err != nil {
 		test.Error(err)
 	}
 
-	req.Header.Set("Content-Type", "application/json")
+	//req.Header.Set("Content-Type", "application/json")
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
@@ -237,6 +235,8 @@ func TestPUT(test *testing.T) {
 	if resp.StatusCode != 200 {
 		test.Errorf("Expected status code %d, got %d", http.StatusCreated, resp.StatusCode)
 	}
+
+	resp.Body.Close()
 }
 
 func TestAuthenicateUser(test *testing.T) {
@@ -259,13 +259,13 @@ func TestAuthenicateUser(test *testing.T) {
 	defer ts.Close()
 	//Post request to create new user
 	reqBody := []byte(`{"uname": "Gator1", "pass": "Gator"}`)
-	resp, err := http.Post("http://localhost:9000/users", "application/json", bytes.NewBuffer(reqBody))
+	resp, err := http.Post((SERVER_ROUTE + "/users"), "application/json", bytes.NewBuffer(reqBody))
 	if err != nil {
 		test.Error(err)
 	}
 
 	if resp.StatusCode == 0 {
-		req, err := http.NewRequest(http.MethodPost, "http://localhost:9000/login", bytes.NewBuffer(reqBody))
+		req, err := http.NewRequest(http.MethodPost, (SERVER_ROUTE + "/login"), bytes.NewBuffer(reqBody))
 		if err != nil {
 			test.Fatal(err)
 		}
@@ -332,7 +332,7 @@ func TestValidateToken(test *testing.T) {
 	//If new user was made successfully. authenticate that user with valid credentials
 	//if resp.StatusCode == 0 {
 	//req, err := http.NewRequest("ValidateToken", "http://localhost:9000/token", bytes.NewBuffer(reqBody))
-	req, err := http.NewRequest(http.MethodPost, "http://localhost:9000/token", bytes.NewBuffer(reqBody))
+	req, err := http.NewRequest(http.MethodPost, (SERVER_ROUTE + "/token"), bytes.NewBuffer(reqBody))
 	if err != nil {
 		test.Fatal(err)
 	}
@@ -386,7 +386,7 @@ func TestDELETE(test *testing.T) {
 
 	// Make a POST request to the test server
 	reqBody := []byte(`{}`)
-	req, err := http.NewRequest("DELETE", "http://localhost:9000/users/1000", bytes.NewBuffer(reqBody))
+	req, err := http.NewRequest("DELETE", (SERVER_ROUTE + "/users/1000"), bytes.NewBuffer(reqBody))
 
 	if err != nil {
 		test.Error(err)
