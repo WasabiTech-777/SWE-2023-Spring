@@ -2,17 +2,31 @@
   <mat-toolbar color="primary" class = "mat-elevation-z6">
     Wi-Key
     <span class="fill"></span>
-    <button mat-button
-    routerLink="/demo-page">Demo</button>
+    
 
-    <span class="fill"></span>
-    <button mat-button
-    routerLink="">Log In</button>
-    <span class="fill"></span>
-    <button mat-button
-    routerLink="register">Register</button>
-    <button mat-button
-    routerLink="profile">My Profile</button>
+    <div *ngIf="name === 'Guest'; else elseBlock">
+      <button mat-button
+      routerLink="/demo-page">Demo</button>
+      <span class="fill"></span>
+      <button mat-button
+      routerLink="">Log In</button>
+      <span class="fill"></span>
+      <button mat-button
+      routerLink="register">Register</button>
+    </div>
+
+    <ng-template #elseBlock>
+      <span class="fill"></span>
+      <span>&ensp;Welcome, {{name}}!&emsp;</span>
+      <span class="fill"></span>
+
+      <button mat-button
+      routerLink="/demo-page">Start Typing!</button>
+      <button mat-button
+      routerLink="profile">My Profile</button>
+      
+    </ng-template>
+
   </mat-toolbar>
 </p>
 
