@@ -189,6 +189,7 @@ func PutUser(writer http.ResponseWriter, request *http.Request) {
 	var user models.User
 	initialize.DB.First(&user, params["uid"])
 	json.NewDecoder(request.Body).Decode(&user)
+	GenerateHashedPassword(&user)
 	initialize.DB.Save(&user)
 	json.NewEncoder(writer).Encode(user)
 }
