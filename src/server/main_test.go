@@ -13,6 +13,7 @@ import (
 	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/initialize"
 	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/models"
 	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/src/server/routes"
+	"github.com/gorilla/mux"
 )
 
 // Global Variables for Testing
@@ -22,6 +23,7 @@ var TestUserID int = -1
 // Global constant for Server Route
 const SERVER_ROUTE = "http://localhost:9000"
 
+// *********************************************LOADING TESTS****************************************//
 func TestLoadEnv(test *testing.T) {
 	initialize.LoadEnv()
 	dsn := os.Getenv("DSN")
@@ -81,6 +83,8 @@ func TestGET(test *testing.T) {
 		test.Errorf("FAILED. Basic Get request on base route, message mis-match")
 	}
 }
+
+//*********************************************routes.user TESTS****************************************//
 
 func TestGetUsers(test *testing.T) {
 
@@ -344,48 +348,46 @@ func TestValidateToken(test *testing.T) {
 
 	fmt.Sprintln("request body: ", reqBody)
 
-	//resp, err := http.Post("http://localhost:9000/users", "application/json", bytes.NewBuffer(reqBody))
-	//if err != nil {
-	//	test.Error(err)
-	//}
+	resp, err := http.Post(SERVER_ROUTE+"/users", "application/json", bytes.NewBuffer(reqBody))
+	if err != nil {
+		test.Error(err)
+	}
 
 	//If new user was made successfully. authenticate that user with valid credentials
-	//if resp.StatusCode == 0 {
-	//req, err := http.NewRequest("ValidateToken", "http://localhost:9000/token", bytes.NewBuffer(reqBody))
-	req, err := http.NewRequest(http.MethodPost, (SERVER_ROUTE + "/token"), bytes.NewBuffer(reqBody))
-	if err != nil {
-		test.Fatal(err)
-	}
+	if resp.StatusCode == http.StatusOK { //WAS 0???
+		req, err := http.NewRequest("ValidateToken", SERVER_ROUTE+"/token", bytes.NewBuffer(reqBody))
+		if err != nil {
+			test.Fatal(err)
+		}
 
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		test.Fatal(err)
-	}
-	defer resp.Body.Close()
+		client := &http.Client{}
+		resp, err := client.Do(req)
+		if err != nil {
+			test.Fatal(err)
+		}
+		defer resp.Body.Close()
 
-	// Check that the response status code is 200
-	body, err := ioutil.ReadAll(resp.Body)
-	respBody := json.Unmarshal(body, &newSession)
+		// Check that the response status code is 200
+		body, err := ioutil.ReadAll(resp.Body)
+		respBody := json.Unmarshal(body, &newSession)
 
-	if err != nil {
-		test.Errorf("Error reading response body: %s", err)
-	}
+		if err != nil {
+			test.Errorf("Error reading response body: %s", err)
+		}
 
-	if respBody == nil {
-		test.Errorf("no session data found")
-	}
-	/*
+		if respBody == nil {
+			test.Errorf("no session data found")
+		}
+
 		if newSession.SessionExp == "" {
 			test.Errorf("no session data found")
 		}
 
-			if resp.StatusCode != http.StatusOK {
-				test.Errorf("handler returned wrong status code: got %v want %v",
-					resp.StatusCode, http.StatusOK)
-			}
-	*/
-
+		if resp.StatusCode != http.StatusOK {
+			test.Errorf("handler returned wrong status code: got %v want %v",
+				resp.StatusCode, http.StatusOK)
+		}
+	}
 }
 
 func TestDELETE(test *testing.T) {
@@ -397,9 +399,6 @@ func TestDELETE(test *testing.T) {
 		}
 
 		routes.DeleteUser(w, r)
-
-		// Write a response with a status code of 201 Created
-		//w.WriteHeader(http.StatusNoContent)
 
 	}))
 	defer ts.Close()
@@ -424,86 +423,132 @@ func TestDELETE(test *testing.T) {
 	}
 }
 
-func TestPutOld(test *testing.T) {
-	var user models.User
-	// Create a new test server with a handler function that handles the PUT request
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// Check that the method is PUT
-		if r.Method != "PUT" {
-			test.Errorf("Expected method PUT, got %s", r.Method)
-		}
+// *********************************************routes.session TESTS****************************************//
 
-		// Read the request body
-		body, err := ioutil.ReadAll(r.Body)
-		if err != nil {
-			test.Error(err)
-		}
-
-		// Check that the request body is valid JSON
-		err = json.Unmarshal(body, &user)
-		if err != nil {
-			test.Error(err)
-		}
-
-		// Check that the user fields are correct
-		if user.Name != "Albert" {
-			test.Errorf("Expected name Albert, got %s", user.Name)
-		}
-
-		// Write a response with a status code of 200 OK
-		w.WriteHeader(http.StatusOK)
-	}))
-
-	// Editing the new user
-	putReqBody := []byte(`{"uname": "Albert", "pass": "Gator"}`)
-	req, err := http.NewRequest("PUT", ts.URL+"/users/"+fmt.Sprint(100000), bytes.NewBuffer(putReqBody))
+// *********************************************routes.article TESTS****************************************//
+/*
+func TestGetArticle(t *testing.T) {
+	req, err := http.NewRequest("GET", SERVER_ROUTE+"/article/{aid}", nil)
 	if err != nil {
-		test.Error(err)
+		t.Fatal(err)
 	}
+	req = mux.SetURLVars(req, map[string]string{"aid": "1"})
 
-	req.Header.Set("Content-Type", "application/json")
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		test.Error(err)
-	}
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(routes.GetArticle)
 
-	// Check that the response status code is 200 OK
-	if resp.StatusCode != http.StatusOK {
-		test.Errorf("Expected status code %d, got %d", http.StatusOK, resp.StatusCode)
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusNotFound {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusNotFound)
 	}
 }
 
-func TestDeleteOld(test *testing.T) {
-	// Create a new test server with a handler function that handles the DELETE request
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// Check that the method is DELETE
-		if r.Method != "DELETE" {
-			test.Errorf("Expected method DELETE, got %s", r.Method)
-		}
-
-		// Check that the request URL is correct
-		if r.URL.Path != "/users/1" {
-			test.Errorf("Expected URL /users/1, got %s", r.URL.Path)
-		}
-
-		// Write a response with a status code of 204 No Content
-		w.WriteHeader(http.StatusNoContent)
-	}))
-
-	// Make a DELETE request to the test server
-	req, err := http.NewRequest("DELETE", ts.URL+"/users/1", nil)
+func TestGetBody(t *testing.T) {
+	req, err := http.NewRequest("GET", SERVER_ROUTE+"/article/body/{aid}", nil)
 	if err != nil {
-		test.Error(err)
+		t.Fatal(err)
 	}
-	client := &http.Client{}
-	resp, err := client.Do(req)
+	req = mux.SetURLVars(req, map[string]string{"aid": "1"})
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(routes.GetBody)
+
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusNotFound {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusNotFound)
+	}
+}
+*/
+
+func TestPostArticle(t *testing.T) {
+	reqBody := []byte(`{"ID": "0", "Url": "https://en.wikipedia.org/wiki/Cat", "Length" : 200}`)
+	req, err := http.NewRequest("POST", SERVER_ROUTE+"/article/", bytes.NewBuffer(reqBody))
 	if err != nil {
-		test.Error(err)
+		t.Fatal(err)
 	}
 
-	// Check that the response status code is 204 No Content
-	if resp.StatusCode != http.StatusNoContent {
-		test.Errorf("Expected status code %d, got %d", http.StatusNoContent, resp.StatusCode)
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(routes.PostArticle)
+
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusNotFound)
+	}
+}
+func TestGetArticle(t *testing.T) {
+	req, err := http.NewRequest("GET", SERVER_ROUTE+"/article/0", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	req = mux.SetURLVars(req, map[string]string{"aid": "1"})
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(routes.GetArticle)
+
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusNotFound {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusNotFound)
+	}
+}
+func TestGetBody(t *testing.T) {
+	req, err := http.NewRequest("GET", SERVER_ROUTE+"/article/body/0", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	req = mux.SetURLVars(req, map[string]string{"aid": "1"})
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(routes.GetBody)
+
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusNotFound {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusNotFound)
+	}
+}
+
+func TestPutArticle(t *testing.T) {
+	reqBody := []byte(`{"ID": "0", "Url": "https://en.wikipedia.org/wiki/Cat", "Length" : 400}`)
+	req, err := http.NewRequest("PUT", SERVER_ROUTE+"/article/{aid}", bytes.NewBuffer(reqBody))
+	if err != nil {
+		t.Fatal(err)
+	}
+	req = mux.SetURLVars(req, map[string]string{"aid": "1"})
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(routes.PutArticle)
+
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusNotFound)
+	}
+}
+
+func TestDeleteArticle(t *testing.T) {
+	req, err := http.NewRequest("DELETE", SERVER_ROUTE+"/article/0", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	req = mux.SetURLVars(req, map[string]string{"sid": "1"})
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(routes.DeleteArticle)
+
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusNotFound {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusNotFound)
 	}
 }
