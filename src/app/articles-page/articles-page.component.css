@@ -1,0 +1,6 @@
+.articles-card {
+    display:flex;
+    margin: 0 auto;
+    vertical-align: middle;
+    max-width: 80%;
+}
