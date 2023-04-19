@@ -43,7 +43,7 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 >  ![image](https://user-images.githubusercontent.com/85584638/233176262-1104a186-3f10-498b-8eec-351cef639762.png)<br>
 >  When you are finished inputing your credentials, click the Log In button and you will be taken to the profile page
 
->  The task bar will now change to reflect that you are logged in. Additionally on the profile page you will have default information displayed to you:
+>  The task bar will now change to reflect that you are logged in after refreshing your browser. Additionally on the profile page you will have default information displayed to you:
 >  ![image](https://user-images.githubusercontent.com/85584638/233190837-3393172d-5abb-4b70-9b0c-31ef18a69a09.png)<br>
 
 >  On the demo page, the article title is displayed at the top, followed by the article. Below that, there is the stats bar, text area, and on screen keyboard:
