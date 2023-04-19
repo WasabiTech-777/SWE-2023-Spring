@@ -16,11 +16,12 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 
 ## Documentation
 
-### Requirements for running this application
+### Requirements for running this application (Sprint 4)
 > Angular supports most recent browsers. This includes the following specific versions: 
 > * Chrome, Firefox, Safari, iOS, Internet Explorer versions 9-11, and Edge
 
-### Using this application
+### Using this application (Sprint 4)
+>  Stuff
 
 ### _Quick Start for the Database_
 > The .env file contains constants for the localhost port for testing (type localhost:PORT# into a browser when program is running to see output). The other constant is the dns string for connecting a database to the server. 
