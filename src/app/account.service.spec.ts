@@ -32,4 +32,7 @@ describe('AccountService', () => {
     var tokenVal = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmFtZSI6ImhlbGxvMTAiLCJleHAiOjE2ODAyMTE4NjZ9.hW3tAf1mnDMGAzsLt-sAKxSg29LTZYym1W69Qa-jVRA"
     expect((service.decodeToken(tokenVal)['uname'] as string)).toBeTruthy();
   });
+  it('should find user data by username', () => {
+    service.getUserInfo("hello10").subscribe(response => {expect(response).toBeTruthy;});
+  });
 });
