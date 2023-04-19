@@ -1,10 +1,13 @@
 package routes
 
 import (
+	"encoding/json"
 	"net/http"
+
+	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/initialize"
+	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/models"
+	"github.com/gorilla/mux"
 )
-
-
 
 func GetArticle(writer http.ResponseWriter, request *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
@@ -31,7 +34,6 @@ func GetBody(writer http.ResponseWriter, request *http.Request) {
 	}
 	json.NewEncoder(writer).Encode(article.Url)
 }
-
 
 func PostArticle(writer http.ResponseWriter, request *http.Request) {
 	writer.Header().Set("Content-Type", "application/json")
@@ -63,5 +65,3 @@ func DeleteArticle(writer http.ResponseWriter, request *http.Request) {
 	initialize.DB.Unscoped().Delete(&article)
 	writer.WriteHeader(http.StatusOK)
 }
-
-
