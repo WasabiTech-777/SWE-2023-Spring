@@ -27,25 +27,25 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 >  From here you can Log In if your account is already created using the Log In button. If you do not have credentials, click either register which takes you to the register page, or test your typing skills as a guest.
 
 >  on the register page, input your username and password, then navigate back to the loggin screen using the Log In button on the top left:
->  ![image](https://user-images.githubusercontent.com/85584638/233171159-0e74a511-a3d1-48d4-bb7c-971633e5977a.png)
+>  ![image](https://user-images.githubusercontent.com/85584638/233171159-0e74a511-a3d1-48d4-bb7c-971633e5977a.png)<br>
 
 >  When logging in, your password will remain hidden unless you click on the 'eye' icon:
->  ![image](https://user-images.githubusercontent.com/85584638/233176145-2f25b148-7215-498f-9b79-38d073c2a106.png)
+>  ![image](https://user-images.githubusercontent.com/85584638/233176145-2f25b148-7215-498f-9b79-38d073c2a106.png)<br>
 >  
->  ![image](https://user-images.githubusercontent.com/85584638/233176262-1104a186-3f10-498b-8eec-351cef639762.png)
+>  ![image](https://user-images.githubusercontent.com/85584638/233176262-1104a186-3f10-498b-8eec-351cef639762.png)<br>
 >  When you are finished inputing your credentials, click the Log In button and you will be taken to the profile page
 
 >  When Initially Logged in:
->  ![image](https://user-images.githubusercontent.com/85584638/233190837-3393172d-5abb-4b70-9b0c-31ef18a69a09.png)
+>  ![image](https://user-images.githubusercontent.com/85584638/233190837-3393172d-5abb-4b70-9b0c-31ef18a69a09.png)<br>
 
 >  Demo page:
->  ![image](https://user-images.githubusercontent.com/85584638/233170097-e7ceab31-e19f-49ba-b274-35d71a2abdf9.png)
+>  ![image](https://user-images.githubusercontent.com/85584638/233170097-e7ceab31-e19f-49ba-b274-35d71a2abdf9.png)<br>
 
 >  Demo page: after typing
->  ![image](https://user-images.githubusercontent.com/85584638/233170598-1c254195-3913-486a-8e81-06458a7fd20b.png)
+>  ![image](https://user-images.githubusercontent.com/85584638/233170598-1c254195-3913-486a-8e81-06458a7fd20b.png)<br>
 
 >  On screen keyboard:
->  ![image](https://user-images.githubusercontent.com/85584638/233170889-e0215029-4be4-417b-9cfe-6b69e63a16c2.png)
+>  ![image](https://user-images.githubusercontent.com/85584638/233170889-e0215029-4be4-417b-9cfe-6b69e63a16c2.png)<br>
 
 
 
