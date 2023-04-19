@@ -17,8 +17,9 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 ## Documentation
 
 ### Requirements for running this application (Sprint 4)
-> Angular supports most recent browsers. This includes the following specific versions: 
+> This program is supported most recent browsers. This includes: 
 > * Chrome, Firefox, Safari, iOS, Internet Explorer versions 9-11, and Edge
+> 
 
 ### Using this application (Sprint 4)
 >  When starting, the user will be presented with the Log In screen:
