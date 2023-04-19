@@ -22,7 +22,8 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 
 ### Using this application (Sprint 4)
 >  When starting, the user will be presented with the Log In screen:
->  ![image](https://user-images.githubusercontent.com/85584638/233169219-85225fb9-640c-413a-bc86-c773df9138d1.png)
+>  ![image](https://user-images.githubusercontent.com/85584638/233169469-10f9cf45-624e-4da5-8ba6-9ab108bfac40.png)
+
 
 
 ### _Quick Start for the Database_
