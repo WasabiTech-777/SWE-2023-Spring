@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { CdTimerComponent, CdTimerModule } from 'angular-cd-timer';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DemoPageComponent } from './demo-page.component';
 
@@ -16,8 +17,8 @@ describe('DemoPageComponent', () => {
     // module -- import components, providers, routing, ect 
     await TestBed.configureTestingModule({
       declarations: [ DemoPageComponent ],
-      imports: [CdTimerModule, FormsModule, MatSnackBar, MatSnackBarModule],
-      providers: [ MatSnackBar ]
+      imports: [CdTimerModule, FormsModule, MatSnackBarModule, BrowserAnimationsModule],
+      providers: [ MatSnackBarModule ]
     })
     .compileComponents();
 
@@ -45,7 +46,7 @@ describe('compare() function test', () => {
     // module -- import components, providers, routing, ect 
     await TestBed.configureTestingModule({
       declarations: [ DemoPageComponent ],
-      imports: [CdTimerModule, FormsModule]
+      imports: [CdTimerModule, FormsModule, MatSnackBarModule, BrowserAnimationsModule]
     })
     .compileComponents();
 
@@ -116,7 +117,7 @@ describe('onTimeOver() function test', () => {
     // module -- import components, providers, routing, ect 
     await TestBed.configureTestingModule({
       declarations: [ DemoPageComponent ],
-      imports: [CdTimerModule, FormsModule]
+      imports: [CdTimerModule, FormsModule, MatSnackBarModule , BrowserAnimationsModule]
     })
     .compileComponents();
 

@@ -29,10 +29,12 @@ describe('AccountService', () => {
     expect(req[0].request.method).toEqual('POST');
   });
   it('should decode a token and provide the username', () => {
-    var tokenVal = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmFtZSI6ImhlbGxvMTAiLCJleHAiOjE2ODAyMTE4NjZ9.hW3tAf1mnDMGAzsLt-sAKxSg29LTZYym1W69Qa-jVRA"
+    var tokenVal = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmFtZSI6ImhlbGxvMTAiLCJleHAiOjE2ODIwMzE4NTB9.cbHEPh8B5mDzhv7MHZj5Q-X-tlshJmewU66VPwoqCYo"
     expect((service.decodeToken(tokenVal)['uname'] as string)).toBeTruthy();
   });
   it('should find user data by username', () => {
-    service.getUserInfo("hello10").subscribe(response => {expect(response).toBeTruthy;});
+    service.getUserInfo("hello10").subscribe((response) => {expect(response).toBeTruthy();;});
+    const req = httpTestingController.expectOne(`${environment.serverUrl}/uname/hello10`);
+    expect(req.request.method).toEqual("GET");
   });
 });
