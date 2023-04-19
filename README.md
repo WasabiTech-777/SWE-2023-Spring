@@ -18,15 +18,23 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 
 ### Requirements for running this application (Sprint 4)
 > This program is supported most recent browsers. This includes: 
-> * Chrome, Firefox, Safari, iOS, Internet Explorer versions 9-11, and Edge
+> * Chrome, Firefox, Safari, iOS, Internet Explorer versions 9-11, and Edge <br>
 > 
+> Ensure you have:
+> * Angular CLI installed
+> * Node.js installed
+> * All npm packages up to date using "npm install" <br>
+> 
+> Begin running the application typing into the CMD terminal at the project root directory:
+> * server.exe
+> * ng serve --open 
 
 ### Using this application (Sprint 4)
 >  When starting, the user will be presented with the Log In screen:
 >  ![image](https://user-images.githubusercontent.com/85584638/233169469-10f9cf45-624e-4da5-8ba6-9ab108bfac40.png)
->  From here you can Log In if your account is already created using the Log In button. If you do not have credentials, click either register which takes you to the register page, or test your typing skills as a guest.
+>  From here you can log in if your account is already created using the Log In button. If you do not have credentials, click either register which takes you to the register page, or test your typing skills as a guest.
 
->  on the register page, input your username and password, then navigate back to the loggin screen using the Log In button on the top left:
+>  On the register page, input your username and password, then navigate back to the login screen using the Log In button on the top left:
 >  ![image](https://user-images.githubusercontent.com/85584638/233171159-0e74a511-a3d1-48d4-bb7c-971633e5977a.png)<br>
 
 >  When logging in, your password will remain hidden unless you click on the 'eye' icon:
@@ -35,7 +43,7 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 >  ![image](https://user-images.githubusercontent.com/85584638/233176262-1104a186-3f10-498b-8eec-351cef639762.png)<br>
 >  When you are finished inputing your credentials, click the Log In button and you will be taken to the profile page
 
->  The task bar will now change to reflect that you are logged in. Additionally on the profile page you will have default information displayed to you:
+>  The task bar will now change to reflect that you are logged in after refreshing your browser. Additionally on the profile page you will have default information displayed to you:
 >  ![image](https://user-images.githubusercontent.com/85584638/233190837-3393172d-5abb-4b70-9b0c-31ef18a69a09.png)<br>
 
 >  On the demo page, the article title is displayed at the top, followed by the article. Below that, there is the stats bar, text area, and on screen keyboard:
