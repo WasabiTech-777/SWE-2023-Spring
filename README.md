@@ -19,7 +19,13 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 ### Requirements for running this application (Sprint 4)
 > This program is supported most recent browsers. This includes: 
 > * Chrome, Firefox, Safari, iOS, Internet Explorer versions 9-11, and Edge
-> 
+> Ensure you have:
+> * Angular CLI installed
+> * Node.js installed
+> * All npm packages up to date using "npm install"
+> Begin running the application typing into the CMD terminal at the project root directory:
+> * server.exe
+> * ng serve --open 
 
 ### Using this application (Sprint 4)
 >  When starting, the user will be presented with the Log In screen:
