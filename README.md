@@ -27,6 +27,15 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 >  Register page:
 >  ![image](https://user-images.githubusercontent.com/85584638/233171159-0e74a511-a3d1-48d4-bb7c-971633e5977a.png)
 
+>  Login Filled in:
+>  ![image](https://user-images.githubusercontent.com/85584638/233176145-2f25b148-7215-498f-9b79-38d073c2a106.png)
+
+>  Password reveal feature:
+>  ![image](https://user-images.githubusercontent.com/85584638/233176262-1104a186-3f10-498b-8eec-351cef639762.png)
+
+>  When Initially Logged in:
+>  ![image](https://user-images.githubusercontent.com/85584638/233176454-e496bb6f-aa9b-433f-9439-975c321f14f9.png)
+
 >  Demo page:
 >  ![image](https://user-images.githubusercontent.com/85584638/233170097-e7ceab31-e19f-49ba-b274-35d71a2abdf9.png)
 
