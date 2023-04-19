@@ -60,4 +60,7 @@ export class AccountService {
         return acc;
       }, Object.create(null));
   }
+  getUserInfo(uname: any) {
+    
+  }
 }

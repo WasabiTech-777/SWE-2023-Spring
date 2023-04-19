@@ -13,12 +13,13 @@ export class AppComponent implements OnInit {
 
   //constructor(private hw: HelloWorldService) {}
 
-  constructor(private account: AccountService) { 
+  constructor(private account: AccountService, private hw: HelloWorldService) { 
     this.name = "Guest"
   }
   cookieValue: String | undefined;
   name: String | undefined;
   ngOnInit(){
+    this.hw.getTitle().subscribe(response => {this.title = (response as any).title});
     this.account.validate();
     this.cookieValue = document.cookie
     .split("; ")
