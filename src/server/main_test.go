@@ -15,8 +15,11 @@ import (
 	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/src/server/routes"
 )
 
+// Global Variables for Testing
 var Cookie string
+var TestUserID int = -1
 
+// Global constant for Server Route
 const SERVER_ROUTE = "http://localhost:9000"
 
 func TestLoadEnv(test *testing.T) {
@@ -97,7 +100,7 @@ func TestGetUsers(test *testing.T) {
 	}
 }
 
-// NOTE: The following tests MUST be performed in order; they are dependent on each other
+// NOTE: Running any of the tests below individually will not work. Use command "go test" to run all tests at once
 func TestPOST(test *testing.T) {
 	var user models.User
 	// Create a new test server with a handler function that handles the POST request
@@ -133,7 +136,7 @@ func TestPOST(test *testing.T) {
 	defer ts.Close()
 
 	// Make a POST request to the test server
-	reqBody := []byte(`{"ID": 1000, "uname": "Gator1", "pass": "Gator"}`)
+	reqBody := []byte(`{"uname": "Gator1", "pass": "Gator"}`)
 	resp, err := http.Post((SERVER_ROUTE + "/users"), "application/json", bytes.NewBuffer(reqBody))
 
 	if err != nil {
@@ -145,6 +148,19 @@ func TestPOST(test *testing.T) {
 		test.Errorf("Expected status code %d, got %d", http.StatusCreated, resp.StatusCode)
 	}
 
+	var newUser models.User
+	// Parse the response body for the new user's ID
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		test.Error(err)
+	}
+
+	err = json.Unmarshal(body, &newUser)
+	if err != nil {
+		test.Error(err)
+	}
+
+	TestUserID = int(newUser.ID)
 }
 
 func TestGetUser(test *testing.T) {
@@ -152,7 +168,11 @@ func TestGetUser(test *testing.T) {
 
 	defer ts.Close()
 
-	resp, err := http.Get(SERVER_ROUTE + "/users/1000")
+	if TestUserID == -1 {
+		test.Errorf("FAILED. TestUserID for Test User not set (User does not exist)")
+	}
+
+	resp, err := http.Get(SERVER_ROUTE + "/users/" + fmt.Sprintf("%d", TestUserID))
 
 	if err != nil {
 		test.Error(err)
@@ -218,7 +238,7 @@ func TestPUT(test *testing.T) {
 	// Make a PUT request to the test server
 	reqBody := []byte(`{"Name": "Gator2", "Password": "Gator"}`)
 	//reqBody := []byte(`{"uname": "Gator2", "pass": "Gator"}`)
-	req, err := http.NewRequest("PUT", (SERVER_ROUTE + "/users/1000"), bytes.NewBuffer(reqBody))
+	req, err := http.NewRequest("PUT", (SERVER_ROUTE + "/users/" + fmt.Sprintf("%d", TestUserID)), bytes.NewBuffer(reqBody))
 
 	if err != nil {
 		test.Error(err)
@@ -258,7 +278,7 @@ func TestAuthenicateUser(test *testing.T) {
 	}))
 	defer ts.Close()
 	//Post request to create new user
-	reqBody := []byte(`{"uname": "Gator1", "pass": "Gator"}`)
+	reqBody := []byte(`{"uname": "Gator2", "pass": "Gator"}`)
 	resp, err := http.Post((SERVER_ROUTE + "/users"), "application/json", bytes.NewBuffer(reqBody))
 	if err != nil {
 		test.Error(err)
@@ -379,14 +399,14 @@ func TestDELETE(test *testing.T) {
 		routes.DeleteUser(w, r)
 
 		// Write a response with a status code of 201 Created
-		w.WriteHeader(http.StatusNoContent)
+		//w.WriteHeader(http.StatusNoContent)
 
 	}))
 	defer ts.Close()
 
 	// Make a POST request to the test server
 	reqBody := []byte(`{}`)
-	req, err := http.NewRequest("DELETE", (SERVER_ROUTE + "/users/1000"), bytes.NewBuffer(reqBody))
+	req, err := http.NewRequest("DELETE", (SERVER_ROUTE + "/users/" + fmt.Sprintf("%d", TestUserID)), bytes.NewBuffer(reqBody))
 
 	if err != nil {
 		test.Error(err)
