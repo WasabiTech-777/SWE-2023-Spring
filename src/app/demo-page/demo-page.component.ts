@@ -1,10 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { WikiPrompt } from '../wikiPrompt';
 import Keyboard from "simple-keyboard";
 import { CdTimerComponent, CdTimerModule } from 'angular-cd-timer';
 
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ProfilePageComponent } from 'app/profile-page/profile-page.component';
 
 @Component({
   selector: 'app-demo-page',
@@ -13,12 +14,13 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   styleUrls: ['./demo-page.component.css']
 })
 
-
 export class DemoPageComponent {
   wiki: WikiPrompt = { 
     name: "Japan",
     text: "The first people in Japan were the Ainu people and other Jōmon people. They were closer related to Europeans or Mongols. They were later conquered and replaced by the Yayoi people (early Japanese and Ryukyuans). The Yayoi were an ancient ethnic group that migrated to the Japanese archipelago mainly from southeastern China during the Yayoi period (300 BCE–300 CE). Modern Japanese people have primarily Yayoi ancestry at an average of 97%. The indigenous Ryukyuan and Ainu peoples have more Jōmon ancestry on the other hand.",
   };
+
+  
 
   constructor(
     private snackBar:MatSnackBar
@@ -133,11 +135,10 @@ export class DemoPageComponent {
         verticalPosition:'top'
       });
     }
-      
     
-    //Close form
+    
 
-    //
 
   };
+
 }
