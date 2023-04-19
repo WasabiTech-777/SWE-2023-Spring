@@ -32,13 +32,15 @@ export class AccountService {
       "pass":pass,
       "articles":0,
       "charhit":0,
-      "charmiss":0
+      "charmiss":0,
+      "wpm":0
     }
     var valInfo = this.http.post(`${environment.serverUrl}/users`, userInfo);
     console.log(userInfo);
     valInfo.subscribe();
     return valInfo;
   }
+
   validate() {
     this.http.post<HttpResponse<any>>(`${environment.serverUrl}/token`, {withCredentials: true}).subscribe();
   }
