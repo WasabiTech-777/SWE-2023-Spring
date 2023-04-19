@@ -14,7 +14,7 @@ func GetSession(writer http.ResponseWriter, request *http.Request) {
 	var session models.Session
 	initialize.DB.First(&session, params["sid"])
 
-	if session.ID == 0 {
+	if session.SessionID == 0 {
 		writer.WriteHeader(http.StatusNotFound)
 		writer.Write([]byte("Session does not exist"))
 	}
@@ -61,7 +61,7 @@ func DeleteSession(writer http.ResponseWriter, request *http.Request) {
 	var session models.Session
 	initialize.DB.First(&session, params["sid"])
 
-	if session.ID == 0 {
+	if session.SessionID == 0 {
 		writer.WriteHeader(http.StatusNotFound)
 		writer.Write([]byte("Session does not exist"))
 	}
