@@ -17,11 +17,37 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 ## Documentation
 
 ### Requirements for running this application (Sprint 4)
-> Angular supports most recent browsers. This includes the following specific versions: 
+> This program is supported most recent browsers. This includes: 
 > * Chrome, Firefox, Safari, iOS, Internet Explorer versions 9-11, and Edge
+> 
 
 ### Using this application (Sprint 4)
->  Stuff
+>  When starting, the user will be presented with the Log In screen:
+>  ![image](https://user-images.githubusercontent.com/85584638/233169469-10f9cf45-624e-4da5-8ba6-9ab108bfac40.png)
+
+>  Register page:
+>  ![image](https://user-images.githubusercontent.com/85584638/233171159-0e74a511-a3d1-48d4-bb7c-971633e5977a.png)
+
+>  Login Filled in:
+>  ![image](https://user-images.githubusercontent.com/85584638/233176145-2f25b148-7215-498f-9b79-38d073c2a106.png)
+
+>  Password reveal feature:
+>  ![image](https://user-images.githubusercontent.com/85584638/233176262-1104a186-3f10-498b-8eec-351cef639762.png)
+
+>  When Initially Logged in:
+>  ![image](https://user-images.githubusercontent.com/85584638/233176454-e496bb6f-aa9b-433f-9439-975c321f14f9.png)
+
+>  Demo page:
+>  ![image](https://user-images.githubusercontent.com/85584638/233170097-e7ceab31-e19f-49ba-b274-35d71a2abdf9.png)
+
+>  Demo page: after typing
+>  ![image](https://user-images.githubusercontent.com/85584638/233170598-1c254195-3913-486a-8e81-06458a7fd20b.png)
+
+>  On screen keyboard:
+>  ![image](https://user-images.githubusercontent.com/85584638/233170889-e0215029-4be4-417b-9cfe-6b69e63a16c2.png)
+
+
+
 
 ### _Quick Start for the Database_
 > The .env file contains constants for the localhost port for testing (type localhost:PORT# into a browser when program is running to see output). The other constant is the dns string for connecting a database to the server. 
