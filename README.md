@@ -18,7 +18,7 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 
 ### Requirements for running this application
 > Angular supports most recent browsers. This includes the following specific versions: 
-> *Chrome, Firefox, Safari, iOS, Internet Explorer versions 9-11, and Edge
+> * Chrome, Firefox, Safari, iOS, Internet Explorer versions 9-11, and Edge
 
 ### Using this application
 
