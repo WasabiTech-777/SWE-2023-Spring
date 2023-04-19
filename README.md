@@ -35,7 +35,7 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 >  ![image](https://user-images.githubusercontent.com/85584638/233176262-1104a186-3f10-498b-8eec-351cef639762.png)
 
 >  When Initially Logged in:
->  ![image](https://user-images.githubusercontent.com/85584638/233176454-e496bb6f-aa9b-433f-9439-975c321f14f9.png)
+>  ![image](https://user-images.githubusercontent.com/85584638/233190837-3393172d-5abb-4b70-9b0c-31ef18a69a09.png)
 
 >  Demo page:
 >  ![image](https://user-images.githubusercontent.com/85584638/233170097-e7ceab31-e19f-49ba-b274-35d71a2abdf9.png)
