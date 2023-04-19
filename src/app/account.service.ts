@@ -61,6 +61,6 @@ export class AccountService {
       }, Object.create(null));
   }
   getUserInfo(uname: any) {
-    
+    return this.http.get(`${environment.serverUrl}/uname/` + uname);
   }
 }

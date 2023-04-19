@@ -9,15 +9,16 @@ import { AccountService } from 'app/account.service';
 export class ProfilePageComponent {
   constructor(private account: AccountService) { 
     this.name = "Guest"
-    this.article = 0
-    this.WPM = 0
-    this.acc = 0
+    this.article = -1
+    this.WPM = -1
+    this.acc = -1
   }
   cookieValue: String | undefined;
   name: String | undefined;
   article: number | undefined;
   WPM: number | undefined;
   acc: number | undefined;
+  user: any;
 
   ngOnInit(){
     this.account.validate();
@@ -27,9 +28,15 @@ export class ProfilePageComponent {
     ?.split("=")[1];
     if(this.cookieValue != undefined) {
       this.name = this.account.decodeToken(this.cookieValue)['uname'] as string
-      //this.article = this.account.decodeToken(this.cookieValue)['articles'] as number
-      //this.WPM = this.account.decodeToken(this.cookieValue)['wpm'] as number
-      //this.acc = (this.account.decodeToken(this.cookieValue)['charhit'] as number) / ((this.account.decodeToken(this.cookieValue)['charhit'] as number) + (this.account.decodeToken(this.cookieValue)['charmiss'] as number))
+      this.account.getUserInfo(this.name).subscribe(response => 
+        {
+          this.user = response;
+          this.article = this.user.articles;
+          if(this.user.charhit + this.user.charmiss > 0)
+            this.acc = this.user.charhit/(this.user.charhit + this.user.charmiss);
+          else
+            this.acc = 0;
+        })
     }
   }
 }
