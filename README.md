@@ -35,16 +35,16 @@ Members: Saviely B.<sup>1</sup>, Kohki T.<sup>1</sup>, Marina T.<sup>2</sup>, Jo
 >  ![image](https://user-images.githubusercontent.com/85584638/233176262-1104a186-3f10-498b-8eec-351cef639762.png)<br>
 >  When you are finished inputing your credentials, click the Log In button and you will be taken to the profile page
 
->  When Initially Logged in:
+>  The task bar will now change to reflect that you are logged in. Additionally on the profile page you will have default information displayed to you:
 >  ![image](https://user-images.githubusercontent.com/85584638/233190837-3393172d-5abb-4b70-9b0c-31ef18a69a09.png)<br>
 
->  Demo page:
+>  On the demo page, the article title is displayed at the top, followed by the article. Below that, there is the stats bar, text area, and on screen keyboard:
 >  ![image](https://user-images.githubusercontent.com/85584638/233170097-e7ceab31-e19f-49ba-b274-35d71a2abdf9.png)<br>
 
->  Demo page: after typing
+>  After typing and running out of time, the article will change colors based on your accuracy. The stats bar will change to show your results:
 >  ![image](https://user-images.githubusercontent.com/85584638/233170598-1c254195-3913-486a-8e81-06458a7fd20b.png)<br>
 
->  On screen keyboard:
+>  The on screen keyboard reflects what inputs are given based on your real life keyboard:
 >  ![image](https://user-images.githubusercontent.com/85584638/233170889-e0215029-4be4-417b-9cfe-6b69e63a16c2.png)<br>
 
 
