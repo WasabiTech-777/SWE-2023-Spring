@@ -19,6 +19,7 @@ import { MatSnackBarModule,  MatSnackBar} from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountService } from './account.service';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ArticlesPageComponent } from './articles-page/articles-page.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     DemoPageComponent,
     LogInComponent,
     RegistrationComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    ArticlesPageComponent
   ],
   imports: [
     BrowserModule,
