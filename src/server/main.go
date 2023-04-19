@@ -27,7 +27,7 @@ func main() {
 	// Routes for Session entity
 	router.HandleFunc("/session/{sid}", routes.GetSession).Methods("GET")
 	router.HandleFunc("/session/user/{uid}", routes.GetSessionFromUser).Methods("GET")
-	//router.HandleFunc("/session/article/{aid}", routes.GetSessionFromArticle).Method("GET")
+	router.HandleFunc("/session/article/{aid}", routes.GetSessionFromArticle).Methods("GET")
 	router.HandleFunc("/session/", routes.PostSession).Methods("OPTIONS", "POST")
 	router.HandleFunc("/session/{sid}", routes.PutSession).Methods("PUT")
 	router.HandleFunc("/session/{sid}", routes.DeleteSession).Methods("DELETE")

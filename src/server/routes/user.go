@@ -143,10 +143,6 @@ func GetUser(writer http.ResponseWriter, request *http.Request) {
 		writer.WriteHeader(http.StatusNotFound)
 		writer.Write([]byte("User does not exist"))
 	}
-
-	//json.NewDecoder(request.Body).Decode(&user)
-	//AuthenticateUser(&user, writer) //Should this be a function or part of GetUser?
-
 	json.NewEncoder(writer).Encode(user)
 
 }
