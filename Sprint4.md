@@ -45,6 +45,12 @@ Rather than just checking whether or not you have contributed all, for this spri
 #### [user.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/174bdd6c8f57efa12affba46334eadbfffbdb2a9/src/server/routes/user.go) ####
 A substantial security bug was fixed. Previously, users modifying their passwords would not have their new passwords properly hashed with the Go's BCrypt package. After much consideration for the best implementation to fix this issue, each password is rehashed when a user edits their details, regardless of the modificaiton of their password. There is a slightly ineffciency in hashing a password that has already been hashed for a user, but checking to see if the password was modified would result in a similar effect on performance, and could ultimately require hashing a new password anyway.  
 
+#### [article.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/main/src/server/routes/article.go) [session.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/main/src/server/routes/session.go) ####
+Routes were updated to include a full CRUD functionality for both the article, and session entity in the database. 
+
+#### [Backend_Documentation.md](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/main/Backend_Documentation.md) ####
+Updated changes to the back end and created an Entity Relationship (ER) diagram of the database organization.
+
 #### [main_test.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/174bdd6c8f57efa12affba46334eadbfffbdb2a9/src/server/main_test.go) ####
 The functionality of these tests in this file has been majorly improved by replacing hard-coded items with appropriate constants and variables. 
 
