@@ -30,7 +30,7 @@ Rather than just checking whether or not you have contributed all, for this spri
 * Account Security
     * As a typical user, I want my personal account information to be secure so that I am not vulnerable to a data breach affecting this service.
 
-* Gence Choice for Typing Content
+* Genre Choice for Typing Content
     * As a history enthusiast, I would like to type articles related to specific genres like moments in history so that I can be more engaged with the application.
 ### Which ones were successfully completed
 * Account Security was completed for the time being; there was a small security bug that resulted in modified passwords not being hashed correctly, but that has been corrected. The tools used in our implementation also prevent XSS attacks. Additionally, tests have been added for user routes to ensure security of user data.
@@ -39,6 +39,12 @@ Rather than just checking whether or not you have contributed all, for this spri
 * Genre Choice for Typing Content required more time to implement. Working with the Wikipedia API requires a lot of time to review the documentation. 
 ## _Frontend Details_ ##
 
+#### [articles-page](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/45eac36e5ac1ac549c8b33c09b5af34091ebdc37/src/app/articles-page/articles-page.component.html)
+An articles page has been added that lists the articles that can by typed on the typing program.
+#### [profile-page](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/45eac36e5ac1ac549c8b33c09b5af34091ebdc37/src/app/profile-page/profile-page.component.html)
+The profile page has been updated so that the article count, WPM, and accuracy of the user is accurate.
+#### [app-component.html](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/45eac36e5ac1ac549c8b33c09b5af34091ebdc37/src/app/app.component.html)
+The top toolbar has been given functionality to show the user's username when logged in.
 
 ## _Backend Details_ ##
 
@@ -59,8 +65,10 @@ The functionality of these tests in this file has been majorly improved by repla
 * **Visits the home page (currently the login page), then navigates to the register page and fills in the username and password fields, and finally clicks the sign up button to create a new account. The HTTP requests are checked for 200 OK responses.**
 #### Cypress test in [demoPage.spec.cy.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/d28ae8915ec5ed7c40697cf1399cac0636e6f18d/cypress/e2e/demoPage.spec.cy.ts)
 * **Visits the home page (currently the login page), then navigates to the demo page and fills the text area and the resulting WPM, text length, # of correct keystrokes, and # of mistakes is correct. This is repeated 2 more times with different text inputs**
-#### Cypress test in [login.spec.cy.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/456cdb1aa202ff37cd4707f5fbe604fa4c537fa0/cypress/e2e/login.spec.cy.ts) [NEW]
+#### Cypress test in [login.spec.cy.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/456cdb1aa202ff37cd4707f5fbe604fa4c537fa0/cypress/e2e/login.spec.cy.ts)
 * **Visits the home page (currently the login page), then inputs a valid username and password into the respective fields, and finally clicks the log in button to log into an account. It then navigates to the profile page via a successful login.**
+#### Cypress test in [fulle2e.spec.cy.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/73cead4cbf45e9cad476f1fce75bd4a5e72d2ea7/cypress/e2e/fulle2e.spec.cy.ts) [NEW]
+* **Performs a full E2E test of the application. It starts at the login page, logs in to redirect to the profile page, then navigates to the articles page, and then finally goes to the typing page and completes an article.**
 
 #### Tests in [app.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/5159d7ebe84904dd363ec3932b869f453e1244c5/src/app/app.component.spec.ts)
 * **Test for helloWorld (getUsers)**
@@ -71,10 +79,11 @@ The functionality of these tests in this file has been majorly improved by repla
 * **Test for onTimeStop()**
 * **Test for compare(char1, char2, strIndex)**
 #### Tests in [log-in.component.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/5159d7ebe84904dd363ec3932b869f453e1244c5/src/app/log-in/log-in.component.spec.ts)
-* **Test for login (AuthenticateUser)** [NEW]
+* **Test for login (AuthenticateUser)** 
 #### Tests in [account.service.spec.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/5159d7ebe84904dd363ec3932b869f453e1244c5/src/app/account.service.spec.ts)
-* **Test for validate (ValidateToken)** [NEW]
-* **Test for decodeToken (decodes the JWT token so user info can be retrieved)** [NEW]
+* **Test for validate (ValidateToken)**
+* **Test for decodeToken (decodes the JWT token so user info can be retrieved)**
+* **Test for getUserInfo, which gets a user's data by username and returns their article count, WPM, and accuracy** [NEW]
 ## _Backend Unit Tests_ ##
 
 #### Tests in [main_test.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/174bdd6c8f57efa12affba46334eadbfffbdb2a9/src/server/main_test.go)
