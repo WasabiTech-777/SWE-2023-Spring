@@ -52,7 +52,8 @@ Routes were updated to include a full CRUD functionality for both the article, a
 Updated changes to the back end and created an Entity Relationship (ER) diagram of the database organization.
 
 #### [main_test.go](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/174bdd6c8f57efa12affba46334eadbfffbdb2a9/src/server/main_test.go) ####
-The functionality of these tests in this file has been majorly improved by replacing hard-coded items with appropriate constants and variables. 
+The functionality of these tests in this file has been majorly improved by replacing hard-coded items with appropriate constants and variables.
+11 new tests have been added for the new functionality in article.go and session.go. 
 
 ## _Cypress Tests and Frontend Unit Tests_
 #### Cypress test in [register.spec.cy.ts](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/d28ae8915ec5ed7c40697cf1399cac0636e6f18d/cypress/e2e/register.spec.cy.ts)
@@ -89,7 +90,18 @@ The functionality of these tests in this file has been majorly improved by repla
 * **TestPUT** [EDITED]
 * **TestDELETE** [EDITED]
 * **TestAuthenticateUser** 
-* **TestValidateToken** 
+* **TestValidateToken**
+* **TestPostSession** [NEW]
+* **TestGetSession**[NEW]
+* **TestGetSessionFromUser** [NEW]
+* **TestGetSessionFromArticle** [NEW]
+* **TestPutSession** [NEW]
+* **TestDeleteSession** [NEW]
+* **TestPostArticle** [NEW]
+* **TestGetArticle** [NEW]
+* **TestGetBody** [NEW]
+* **TestPutArticle** [NEW]
+* **TestDeleteArticle** [NEW]
 
 ## _README with Requirements for Users Running Application_ ##
 Please see [README.md](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/b0091f01cbabecc6dec080b7225032755b63aa13/README.md)
