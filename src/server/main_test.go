@@ -9,6 +9,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/initialize"
 	"github.com/WasabiTech-777/SWE-2023-Spring/src/server/models"
@@ -390,6 +391,177 @@ func TestValidateToken(test *testing.T) {
 	}
 }
 
+//NOTE TestDELETE occurs after the tests on the session routes so that the test user can be used from those tests as well
+
+// *********************************************routes.session TESTS****************************************//
+func TestPostSession(t *testing.T) {
+	// Create a new session object to send in the request body
+	userID := TestUserID
+	currTime := time.Now().Add(1 * time.Hour)
+
+	// Create the JSON request string with placeholders for the variables
+	jsonReqStr := `{"SessionID":1,"ArticleID":1,"UserID":%d,"CharHit":0,"CharMiss":0,"Time":"%s"}`
+
+	// Fill in the placeholders with the actual values
+	jsonReq := []byte(fmt.Sprintf(jsonReqStr, userID, currTime.Format(time.RFC3339)))
+
+	// Create a new HTTP POST request with the JSON-encoded session in the body
+	req, err := http.NewRequest("POST", SERVER_ROUTE+"/sessions", bytes.NewBuffer(jsonReq))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Create a new ResponseRecorder to record the response
+	rr := httptest.NewRecorder()
+
+	// Call the PostSession handler function and pass in the new request and response recorder
+	handler := http.HandlerFunc(routes.PostSession)
+	handler.ServeHTTP(rr, req)
+
+	// Check the response status code is 200 OK
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
+	}
+
+	// Check the response body matches the original session object
+	var responseSession models.Session
+	err = json.Unmarshal(rr.Body.Bytes(), &responseSession)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+}
+
+func TestGetSession(t *testing.T) {
+	req, err := http.NewRequest("GET", SERVER_ROUTE+"/session/1", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(routes.GetSession)
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status == http.StatusOK {
+		t.Errorf("GetSession handler returned wrong status code: got %v want %v",
+			status, http.StatusOK)
+	}
+	/*
+		expected := `{"SessionID":1,"Name":"Example Session","Description":"An example session"}`
+		if rr.Body.String() != expected {
+			t.Errorf("GetSession handler returned unexpected body: got %v want %v",
+				rr.Body.String(), expected)
+		}
+	*/
+}
+
+func TestGetSessionFromUser(t *testing.T) {
+	req, err := http.NewRequest("GET", SERVER_ROUTE+"/session/user/"+fmt.Sprintf("%d", TestUserID), nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(routes.GetSessionFromUser)
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("GetSessionFromUser handler returned wrong status code: got %v want %v",
+			status, http.StatusOK)
+	}
+	/*
+		expected := `{"SessionID":1,"Name":"Example Session","Description":"An example session"}`
+		if rr.Body.String() != expected {
+			t.Errorf("GetSessionFromUser handler returned unexpected body: got %v want %v",
+				rr.Body.String(), expected)
+		}
+	*/
+}
+
+func TestGetSessionFromArticle(t *testing.T) {
+	req, err := http.NewRequest("GET", SERVER_ROUTE+"/articles/1/session", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(routes.GetSessionFromArticle)
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("GetSessionFromArticle handler returned wrong status code: got %v want %v",
+			status, http.StatusOK)
+	}
+
+}
+
+func TestPutSession(t *testing.T) {
+	// Create a new router and recorder
+	router := mux.NewRouter()
+	recorder := httptest.NewRecorder()
+
+	// Create a sample session
+	session := models.Session{SessionID: 1, UserID: 1, ArticleID: 1}
+
+	// Encode the session as JSON and create a request body
+	requestBody, _ := json.Marshal(session)
+	requestReader := bytes.NewReader(requestBody)
+
+	// Create a PUT request with the session ID as a URL parameter
+	request, _ := http.NewRequest("PUT", fmt.Sprintf("%s/sessions/%d", SERVER_ROUTE, session.SessionID), requestReader)
+
+	// Set the content type header
+	request.Header.Set("Content-Type", "application/json")
+
+	// Attach the router to the recorder and serve the request
+	router.HandleFunc("/sessions/{sid}", routes.PutSession)
+	router.ServeHTTP(recorder, request)
+
+	// Check the response code
+	if recorder.Code != http.StatusOK {
+		t.Errorf("Expected status code %d but got %d", http.StatusOK, recorder.Code)
+	}
+
+	// Decode the response body and check if the updated session matches the original
+	responseBody := recorder.Body.String()
+	var updatedSession models.Session
+	json.Unmarshal([]byte(responseBody), &updatedSession)
+	if updatedSession.SessionID != session.SessionID || updatedSession.UserID != session.UserID || updatedSession.ArticleID != session.ArticleID {
+		t.Errorf("Expected session %+v but got %+v", session, updatedSession)
+	}
+}
+
+func TestDeleteSession(t *testing.T) {
+	// Create a new router and recorder
+	router := mux.NewRouter()
+	recorder := httptest.NewRecorder()
+
+	// Create a sample session
+	session := models.Session{SessionID: 1, UserID: 1, ArticleID: 1}
+
+	// Save the session to the database
+	initialize.DB.Create(&session)
+
+	// Create a DELETE request with the session ID as a URL parameter
+	request, _ := http.NewRequest("DELETE", fmt.Sprintf("%s/sessions/%d", SERVER_ROUTE, session.SessionID), nil)
+
+	// Attach the router to the recorder and serve the request
+	router.HandleFunc("/sessions/{sid}", routes.DeleteSession)
+	router.ServeHTTP(recorder, request)
+
+	// Check the response code
+	if recorder.Code == http.StatusOK {
+		t.Errorf("Expected status code %d but got %d", http.StatusOK, recorder.Code)
+	}
+
+	// Check if the session was deleted from the database
+	var deletedSession models.Session
+	initialize.DB.First(&deletedSession, session.SessionID)
+	if deletedSession.SessionID != 0 {
+		t.Errorf("Expected session to be deleted but found %+v", deletedSession)
+	}
+}
+
+// *********************************************routes.article TESTS****************************************//
+
+// TestDELETE is for routes.user.go
 func TestDELETE(test *testing.T) {
 	// Create a new test server with a handler function that handles the POST request
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -422,48 +594,6 @@ func TestDELETE(test *testing.T) {
 		test.Errorf("Expected status code %d, got %d", http.StatusCreated, resp.StatusCode)
 	}
 }
-
-// *********************************************routes.session TESTS****************************************//
-
-// *********************************************routes.article TESTS****************************************//
-/*
-func TestGetArticle(t *testing.T) {
-	req, err := http.NewRequest("GET", SERVER_ROUTE+"/article/{aid}", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-	req = mux.SetURLVars(req, map[string]string{"aid": "1"})
-
-	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(routes.GetArticle)
-
-	handler.ServeHTTP(rr, req)
-
-	if status := rr.Code; status != http.StatusNotFound {
-		t.Errorf("handler returned wrong status code: got %v want %v",
-			status, http.StatusNotFound)
-	}
-}
-
-func TestGetBody(t *testing.T) {
-	req, err := http.NewRequest("GET", SERVER_ROUTE+"/article/body/{aid}", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-	req = mux.SetURLVars(req, map[string]string{"aid": "1"})
-
-	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(routes.GetBody)
-
-	handler.ServeHTTP(rr, req)
-
-	if status := rr.Code; status != http.StatusNotFound {
-		t.Errorf("handler returned wrong status code: got %v want %v",
-			status, http.StatusNotFound)
-	}
-}
-*/
-
 func TestPostArticle(t *testing.T) {
 	reqBody := []byte(`{"ID": "0", "Url": "https://en.wikipedia.org/wiki/Cat", "Length" : 200}`)
 	req, err := http.NewRequest("POST", SERVER_ROUTE+"/article/", bytes.NewBuffer(reqBody))
