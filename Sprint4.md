@@ -101,7 +101,7 @@ The functionality of these tests in this file has been majorly improved by repla
 * **TestValidateToken** 
 
 ## _README with Requirements for Users Running Application_ ##
-Please see [README.md](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/b0091f01cbabecc6dec080b7225032755b63aa13/README.md)
+Please see [README.md](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/d56f4462b4638e93bbfdde70142798d7d0f2109d/README.md)
 
 ## _Updated Backend Documentation_ ##
-Please see [Backend_Documentation.md](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/51e2cc30a810aa0da4dd435826402799daeee1ba/Backend_Documentation.md)
+Please see [Backend_Documentation.md](https://github.com/WasabiTech-777/SWE-2023-Spring/blob/d56f4462b4638e93bbfdde70142798d7d0f2109d/Backend_Documentation.md)
