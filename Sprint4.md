@@ -22,8 +22,8 @@ Rather than just checking whether or not you have contributed all, for this spri
 
 ## _Work Completed in Sprint 4_ ##
 
-### [Video Demonstration for Sprint 4 TBA](https://youtu.be/XhNUXZZ_6Bk) ###
-### [Alternate Link for Sprint 4 Video TBA](https://clipchamp.com/watch/FMN3fO4qFXd)
+### [Video Demonstration for Sprint 4](https://youtu.be/nw9QVmq_TI8) ###
+### [Alternate Link for Sprint 4 Video](https://clipchamp.com/watch/BSzmDGNW1P8)
 
 
 ### What issues the team planned to address + related user stories
